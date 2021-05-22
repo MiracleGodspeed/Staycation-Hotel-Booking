@@ -40,7 +40,14 @@ import {
   ModalFooter,
 
 } from "reactstrap";
+// import '../../Assets/css/style.css'
+// import '../../Assets/css/mob.css'
+// import '../../Assets/css/materialize.css'
+// import '../../Assets/css/bootstrap.css'
+// import '../../Assets/css/animate.css'
 
+// import '../../Assets/css/font-awesome.min.css'
+// import '../../Assets/css/font-awesome.min.css'
 class Home extends Component{
     state={
 
@@ -50,8 +57,10 @@ class Home extends Component{
         // init_jquery();
     }
     render(){
+ require('../../Assets/css/bootstrap.css');
         return(
-            <>
+            <div>
+      
                 {/* <h2>Home</h2>
                 <button className="btn btn-success">Click</button> */}
       <div>
@@ -84,23 +93,23 @@ class Home extends Component{
                     </div>
                     <div className="input-field">
                       {/* <input type="submit" defaultValue="search" className="link-btn" /> */}
-                      <button className="link-btn">Search</button>
+                      <button className="link-btn btn-large btn-large-custom">Search</button>
 
                        </div>
                   </form>
                   <div className="tourz-hom-ser">
                     <ul>
                       <li>
-                        <a href="booking-tour-package.html" className="waves-effect waves-light btn-large tourz-pop-ser-btn wow fadeInUp" data-wow-duration="0.5s"><img src={icon1} alt="" /> Lagos</a>
+                        <a href="booking-tour-package.html" className="waves-effect waves-light tourz-pop-ser-btn wow fadeInUp" data-wow-duration="0.5s"><img src={icon1} alt="" /> LAGOS</a>
                       </li>
                       <li>
-                        <a href="booking-flight.html" className="waves-effect waves-light btn-large tourz-pop-ser-btn wow fadeInUp" data-wow-duration="1s"><img src={icon2} alt="" /> Abuja</a>
+                        <a href="booking-flight.html" className="waves-effect waves-light tourz-pop-ser-btn wow fadeInUp" data-wow-duration="1s"><img src={icon2} alt="" /> ABUJA</a>
                       </li>
                       <li>
-                        <a href="booking-car-rentals.html" className="waves-effect waves-light btn-large tourz-pop-ser-btn wow fadeInUp" data-wow-duration="1.5s"><img src={icon3} alt="" /> Asaba</a>
+                        <a href="booking-car-rentals.html" className="waves-effect waves-light tourz-pop-ser-btn wow fadeInUp" data-wow-duration="1.5s"><img src={icon3} alt="" /> ASABA</a>
                       </li>
                       <li>
-                        <a href="booking-hotel.html" className="waves-effect waves-light btn-large tourz-pop-ser-btn wow fadeInUp" data-wow-duration="2s"><img src={icon4} alt="" />Enugu</a>
+                        <a href="booking-hotel.html" className="waves-effect waves-light tourz-pop-ser-btn wow fadeInUp" data-wow-duration="2s"><img src={icon4} alt="" />ENUGU</a>
                       </li>
                     </ul>
                   </div>
@@ -897,7 +906,7 @@ class Home extends Component{
         {/* Mirrored from rn53themes.net/themes/demo/travelz/main.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 12 May 2021 08:54:18 GMT */}
       </div>
     );
-            </>
+            </div>
         )
     }
 }

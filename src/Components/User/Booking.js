@@ -14,7 +14,7 @@ class Booking extends Component{
 
     render(){
         return(
-            <>
+            <div>
             <Header/>
                 <section>
         <div className="tr-register">
@@ -125,7 +125,7 @@ class Booking extends Component{
         </div>
       </section>
       <Footer/>
-            </>
+            </div>
         )
     }
 }

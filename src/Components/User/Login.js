@@ -1,19 +1,35 @@
 import React, { Component } from 'react'
 import Header from "../../Layouts/User/Header"
+import {Link, Redirect} from "react-router-dom"
+import $ from 'jquery'
 
 
 class Login extends Component{
     state={
 
     }
+    Login = (e) => {
+     e.preventDefault();
 
+     
+      this.setState({
+        redirect:true
+      })
+    }
     componentDidMount(){
-
+      $("#signIn").on('click', function(e){
+        e.preventDefault();
+        window.location.href = "/Dashboard2"
+      })
     }
 
     render(){
+      // if(this.state.redirect){
+        
+      //   return <Redirect to={{ pathname: "/Login", state:{navigation:'willFocus'} }} />
+      // }
         return(
-            <>
+            <div>
                 <div>
        <Header/>
         {/*DASHBOARD*/}
@@ -36,8 +52,13 @@ class Login extends Component{
                   </div>
                 </div>
                 <div className="row">
+                  {/* <Link to={"/Dashboard2"}> */}
                   <div className="input-field col s12">
-                    <input type="submit" defaultValue="submit" className="waves-effect waves-light btn-large full-btn" /> </div>
+                    
+                    <input type="submit" value="Sign In" className="waves-effect waves-light btn-large full-btn" id="signIn" />
+                
+                     </div>
+                     {/* </Link> */}
                 </div>
               </form>
               <p><a href="forgot-pass.html">forgot password</a> | Are you a new user ? <a href="register.html">Register</a>
@@ -225,7 +246,7 @@ class Login extends Component{
         </section>
         {/*========= Scripts ===========*/}
       </div>
-            </>
+            </div>
         )
     }
 }

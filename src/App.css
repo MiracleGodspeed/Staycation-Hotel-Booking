@@ -1,12 +1,14 @@
 .App {
   text-align: center;
   font-family: 'Quicksand', sans-serif!important;
+  background-color: white!important;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -27,6 +29,11 @@
 
 .App-link {
   color: #61dafb;
+}
+.btn-large-custom{
+  line-height: 44px!important;
+  height: 44px!important;
+  background: linear-gradient(to bottom,#f4364f,#dc2039)!important;
 }
 
 @keyframes App-logo-spin {

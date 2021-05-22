@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+// import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-//import 'bootstrap/dist/css/bootstrap.min.css';
-import './Assets/css/style.css'
-import './Assets/css/mob.css'
-import './Assets/css/materialize.css'
-import './Assets/css/bootstrap.css'
-import './Assets/css/animate.css'
-import './Assets/css/font-awesome.min.css'
-import './Assets/css/font-awesome.min.css'
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import './Assets/css/style.css'
+// import './Assets/css/mob.css'
+// import './Assets/css/materialize.css'
+// import './Assets/css/bootstrap.css'
+// import './Assets/css/animate.css'
+// import './Assets/css/font-awesome.min.css'
+// import './Assets/css/font-awesome.min.css'
 
 ReactDOM.render(
   <React.StrictMode>

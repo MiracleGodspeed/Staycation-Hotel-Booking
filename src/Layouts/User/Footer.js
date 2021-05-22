@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {init_jquery} from "../../Assets/js/custom"
+// import {init_jquery} from "../../Assets/js/custom"
 import logo from "../../Assets/images/logo.png"
 import logo2 from "../../Assets/images/logo-bg1.png"
 import logo3 from "../../Assets/images/logo-bg.png"
@@ -14,12 +14,12 @@ class Footer extends Component {
 
 
     componentDidMount(){
-        init_jquery();
+        // init_jquery();
     }
 
     render(){
         return(
-       <>
+       <div>
    {/*====== TIPS BEFORE TRAVEL ==========*/}
    <section>
           <div className="rows tips tips-home tb-space home_title">
@@ -190,7 +190,7 @@ class Footer extends Component {
             </ul>
           </div>
         </section>
-       </>
+       </div>
         )
     }
 }

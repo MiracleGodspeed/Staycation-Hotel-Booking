@@ -56,8 +56,8 @@
      -moz-transition: all 0.5s ease;
      -ms-transition: all 0.5s ease;
      -o-transition: all 0.5s ease;
-     background: #f4364f;
-     background: linear-gradient(to bottom,#f4364f,#dc2039);
+     background: #636363;
+     background: linear-gradient(to bottom,#f4364f,#dc2039)!important;
 }
  .link-btn:hover {
      background-color: #e23464;
@@ -4205,7 +4205,7 @@
 /* HOME PAGE SEARCH BOX 
 /*-------------------------------------------------*/
  .tourz-search {
-     background: url(../images/hotel_san1.jpg) no-repeat;
+     background: url(../images/hotel_san22.jpg) no-repeat;
      position: relative;
      background-size: cover;
 }
@@ -4951,6 +4951,25 @@
      padding: 0px;
      font-size: 18px !important;
 	 width:100%;
+}
+input[type="text"]{
+    border: 1px solid rgba(128, 128, 128, 0.322)!important;
+    line-height: 25px!important;
+}
+input[type="password"]{
+    border: 1px solid rgba(128, 128, 128, 0.322)!important;
+    line-height: 25px!important;
+
+}
+input[type="number"]{
+    border: 1px solid rgba(128, 128, 128, 0.322)!important;
+    line-height: 25px!important;
+
+}
+input[type="email"]{
+    border: 1px solid rgba(128, 128, 128, 0.322)!important;
+    line-height: 25px!important;
+
 }
  .tr-regi-form label {
 }

@@ -4,6 +4,7 @@ import logo from "../../Assets/images/logo.png"
 import logo2 from "../../Assets/images/logo-bg1.png"
 import logo3 from "../../Assets/images/logo-bg.png"
 import {Link} from 'react-router-dom'
+// import UserLayout from "../../Layouts/User/UserLayout"
 
 
 
@@ -13,13 +14,20 @@ class Header extends Component {
     }
 
 
-    componentDidMount(){
+    componentDidMount(){ 
         init_jquery();
     }
 
     render(){
+      // require('../../Assets/js/custom.js')
+      require('../../Assets/css/style.css')
+      require('../../Assets/css/mob.css')
+      require('../../Assets/css/materialize.css')
+      require('../../Assets/css/bootstrap.css')
+      require('../../Assets/css/animate.css')
         return(
-            <>
+            <div>
+            {/* <UserLayout/> */}
                  {/* Preloader */}
         <div id="preloader">
           <div id="status">&nbsp;</div>
@@ -31,7 +39,7 @@ class Header extends Component {
             <div className="ed-mob-menu-con">
               <div className="ed-mm-left">
                 <div className="wed-logo">
-                  <Link to={"/Home"}><img src={logo3} alt="" />
+                  <Link to={"/"}><img src={logo3} alt="" />
                   </Link>
                 </div>
               </div>
@@ -101,12 +109,12 @@ class Header extends Component {
               <div className="row">
                 <div className="col-md-12">
                   <div className="wed-logo">
-                    <Link to={"/Home"}><img src={logo2} alt="" />
+                    <Link to={"/"}><img src={logo2} alt="" />
                     </Link>
                   </div>
                   <div className="main-menu">
                     <ul>
-                        <li><Link to={"/Home"}>Home</Link>
+                        <li><Link to={"/"}>Home</Link>
                         </li>
                     
                         <li><a href="#">Hotels</a></li>
@@ -165,7 +173,7 @@ class Header extends Component {
             </div>
         </div>*/}
         </section>
-            </>
+            </div>
         )
     }
 }

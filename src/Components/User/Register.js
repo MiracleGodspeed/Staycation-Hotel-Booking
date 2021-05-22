@@ -13,7 +13,7 @@ class Register extends Component{
 
     render(){
         return(
-            <>
+            <div>
             <Header/>
              <div>
         <section>
@@ -237,7 +237,7 @@ class Register extends Component{
           </div>
         </section>
       </div>
-            </>
+            </div>
         )
     }
 }

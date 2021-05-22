@@ -1938,13 +1938,7 @@ input[type="number"]::-webkit-outer-spin-button {
  * 2. Address `box-sizing` set to `border-box` in Safari and Chrome.
  */
 
-input[type="search"] {
-    -webkit-appearance: textfield;
-    /* 1 */
-    
-    box-sizing: content-box;
-    /* 2 */
-}
+
 /**
  * Remove inner padding and search cancel button in Safari and Chrome on OS X.
  * Safari (but not Chrome) clips the cancel button when the search input has
@@ -2709,9 +2703,9 @@ nav ul a span.badge {
 .collapsible span.badge {
     margin-top: calc(1.5rem - 11px);
 }
-.side-nav span.badge {
+/* .side-nav span.badge {
     margin-top: calc(24px - 11px);
-}
+} */
 /* This is needed for some mobile phones to display the Google Icon font properly */
 
 .material-icons {
@@ -3608,7 +3602,7 @@ nav ul a {
     cursor: pointer;
 }
 nav ul a.btn,
-nav ul a.btn-large,
+/* nav ul a.btn-large, */
 nav ul a.btn-large,
 nav ul a.btn-flat,
 nav ul a.btn-floating {
@@ -4292,7 +4286,7 @@ html {} @media only screen and (min-width: 0) {
 }
 .btn,
 .btn-large {
-    text-decoration: none;
+    /* text-decoration: none;
     text-align: center;
     letter-spacing: .5px;
     transition: .2s ease-out;
@@ -4301,7 +4295,7 @@ html {} @media only screen and (min-width: 0) {
     font-weight: 600;
     background: #1aa5d8;
     background: linear-gradient(to bottom, #1aa5d8, #1386b1);
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Quicksand', sans-serif; */
 }
 .btn:hover,
 .btn-large:hover {
@@ -4337,7 +4331,7 @@ html {} @media only screen and (min-width: 0) {
     bottom: -28px;
 }
 .btn-floating.btn-large i {
-    line-height: 56px;
+    /* line-height: 56px; */
 }
 .btn-floating.halfway-fab {
     position: absolute;
@@ -4754,7 +4748,7 @@ button.btn-floating {
     box-sizing: border-box;
     padding: 2rem;
 }
-.side-nav .collapsible,
+/* .side-nav .collapsible,
 .side-nav.fixed .collapsible {
     border: none;
     box-shadow: none;
@@ -4787,7 +4781,7 @@ button.btn-floating {
 .side-nav .collapsible-body li a,
 .side-nav.fixed .collapsible-body li a {
     padding: 0 23.5px 0 31px;
-}
+} */
 .collapsible.popout {
     border: none;
     box-shadow: none;
@@ -4961,7 +4955,7 @@ input[type=datetime],
 input[type=datetime-local],
 input[type=tel],
 input[type=number],
-input[type=search],
+/* input[type=search], */
 textarea.materialize-textarea {
      border: none;
     /* border-bottom: 1px solid #9e9e9e; */
@@ -5083,7 +5077,7 @@ input[type=tel].valid,
 input[type=tel]:focus.valid,
 input[type=number].valid,
 input[type=number]:focus.valid,
-input[type=search].valid,
+/* input[type=search].valid, */
 input[type=search]:focus.valid,
 textarea.materialize-textarea.valid,
 textarea.materialize-textarea:focus.valid {
@@ -5218,6 +5212,7 @@ textarea.materialize-textarea + label:after {
 .input-field {
     position: relative;
     margin-top: 1rem;
+    /* border: 1px solid grey; */
 }
 .input-field.inline {
     display: inline-block;
@@ -6084,7 +6079,7 @@ input[type=range]:focus::-ms-fill-upper {
     padding-left: 18px;
     border-left: 2px solid #ee6e73;
 }
-.side-nav {
+/* .side-nav {
     position: fixed;
     width: 300px;
     left: 0;
@@ -6280,7 +6275,7 @@ input[type=range]:focus::-ms-fill-upper {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 997;
     will-change: opacity;
-}
+} */
 /*
     @license
     Copyright (c) 2014 The Polymer Project Authors. All rights reserved.

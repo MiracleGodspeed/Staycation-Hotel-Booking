@@ -20,12 +20,12 @@ class HotelDetails extends Component {
 
 
     componentDidMount(){
-        init_jquery();
+        // init_jquery();
     }
 
     render(){
         return(
-            <>
+            <div>
             <div>
                 <Header/>
         {/*====== BANNER ==========*/}
@@ -371,7 +371,7 @@ class HotelDetails extends Component {
         {/*====== TIPS BEFORE TRAVEL ==========*/}
         {/*========= Scripts ===========*/}
       </div>
-            </>
+            </div>
         )
     }
 }
