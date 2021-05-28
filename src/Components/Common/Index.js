@@ -143,7 +143,7 @@ class Home extends Component{
                   <div className="b_pack rows">
                     {/* TOUR TITLE */}
                     <div className="col-md-12 col-sm-12">
-                      <h4><Link to={"/Hotel_Details"}>Pine Crest Hotels<span className="v_pl_name">(Lekki)</span></Link></h4>
+                      <h4><a href="/Hotel_Details">Pine Crest Hotels<span className="v_pl_name">(Lekki)</span></a></h4>
                     </div>
                     {/* TOUR ICONS */}
                     {/* <div className="col-md-4 col-sm-4 pack_icon">
@@ -174,7 +174,7 @@ class Home extends Component{
                   <div className="b_pack rows">
                     {/* TOUR TITLE */}
                     <div className="col-md-12 col-sm-12">
-                      <h4><Link to={"/Hotel_Details"}>BON Sunshine Hotels<span className="v_pl_name">(Enugu)</span></Link></h4>
+                      <h4><a href="/Hotel_Details">BON Sunshine Hotels<span className="v_pl_name">(Enugu)</span></a></h4>
                     </div>
                     {/* TOUR ICONS */}
                     {/* <div className="col-md-4 col-sm-4 pack_icon">

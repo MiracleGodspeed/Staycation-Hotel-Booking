@@ -52,6 +52,19 @@
     margin-left: 290px;
     background-color: #2a2b3d;
   }
+
+  #contents2 {
+    position: relative;
+    transition: .3s;
+    margin-left: 290px;
+    /* background-color: #2a2b3d; */
+  }
+  #top-top{
+    position: relative;
+    transition: .3s;
+    margin-left: 290px;
+    background-color: #2a2b3d;
+  }
   .margin {
     margin-left: 0 !important;
   }
@@ -233,6 +246,11 @@
   }
   .welcome .content {
     background-color: #313348;
+    padding: 15px;
+    margin-top: 25px;
+  }
+  .welcome .content2 {
+    /* background-color: #313348; */
     padding: 15px;
     margin-top: 25px;
   }
@@ -474,6 +492,12 @@
   
   @media (max-width: 767px) {
     #contents {
+      margin: 0 !important
+    }
+    #contents2 {
+      margin: 0 !important
+    }
+    #top-top {
       margin: 0 !important
     }
     .statistics .box {

@@ -13,13 +13,15 @@ $(function () {
   
           showAsideBtn = $('.show-side-btn'),
   
-          contents = $('#contents');
+          contents = $('#contents'),
+          topNav = $('#top-top');
   
       showAsideBtn.on("click", function () {
   
         $("#" + $(this).data('show')).toggleClass('show-side-nav');
   
         contents.toggleClass('margin');
+        topNav.toggleClass('margin');
   
       });
   
@@ -64,6 +66,7 @@ $(function () {
         $('#' + $(this).data('close')).addClass('show-side-nav');
   
         contents.removeClass('margin');
+        topNav.removeClass('margin');
   
       });
   

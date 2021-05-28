@@ -76,6 +76,10 @@ export function init_jquery() {
         'overflow': 'visible'
     });
 
+
+    $("#email-dd").on('click', function(){
+        $("#nav-dd").slideDown(200)
+    })
     //MATERIALIZE SELECT DROPDOWN
     //$('select').material_select();
 	//MATERIALIZE SLIDER

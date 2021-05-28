@@ -5089,16 +5089,17 @@ input[type="email"]{
      border: 1px solid #efefef;
 }
  .v2-hom-search {
-     background: url(../images/slider/1.jpg) no-repeat;
+     background: rgb(219, 219, 223);
+     /* background: url(../images/slider/1.jpg) no-repeat; */
      position: relative;
-     background-size: cover;
+     /* background-size: cover; */
      padding: 100px 0px;
 }
  .v2-hom-search:before {
      content: '';
-     background: #141E30;
-     background: linear-gradient(to right, rgba(36, 59, 85, 0.55), rgba(20, 30, 48, 0.82));
-     background: linear-gradient(to right, rgba(25, 42, 103, 0.8), rgba(20, 30, 48, 0));
+     /* background: #141E30; */
+     /* background: linear-gradient(to right, rgba(36, 59, 85, 0.55), rgba(20, 30, 48, 0.82)); */
+     /* background: linear-gradient(to right, rgba(25, 42, 103, 0.8), rgba(20, 30, 48, 0)); */
      position: absolute;
      bottom: 0px;
      top: 0px;

@@ -10,21 +10,131 @@ import s2 from "../../Assets/images/gallery/s2.jpg"
 import s3 from "../../Assets/images/gallery/s3.jpg"
 import room01 from "../../Assets/images/rooms/01.jpg"
 import room02 from "../../Assets/images/rooms/02.jpg"
+import {currencyFormat} from "../../Helpers/Helpers"
+import { Button, notification, Modal, Select, Input, BackTop } from 'antd';
+import 'antd/dist/antd.css';
+import $ from 'jquery'
 
+
+
+const openNotification = () => {
+  notification.success({
+  //   message: 'Notification Title',
+    description:
+      'Added To Booking Cart!',
+      style:{background:'green', color:'ghostwhite'}
+  });
+};
 
 
 class HotelDetails extends Component {
     state={
-
+      defaultRoomCount:1
     }
+closeModal = () => {
+  this.setState({add_hotel:false, show_form:false, defaultRoomCount:1})
+  this.resolveNumberOfRooms(1);
+}
+saveDetails = () => {
+  this.setState({
+    add_hotel:false,
+    show_form:false,
+    defaultRoomCount:1
+  })
+  this.resolveNumberOfRooms(1);
+  openNotification();
+}
 
+resolveNumberOfRooms = (value) => {
+let i;
+let new_value = parseInt(value) - 1;
+//var ft = $('.form-clone-hold');
+var ft = document.getElementById("form-clone-hold");
+ft.innerHTML = '';
+
+//var ft = $(this).parent(".form-clone-hold");
+
+//ft.detach();
+
+  for(i = 0; i < new_value; i++){
+    //alert(i);
+    var inc = i+2;
+    var labelName = "Person " + inc + " Full Name"
+    //var clone = $('.form-clone').html();
+    var holdDiv = document.createElement("div");
+    var secondChild = document.createElement("div");
+    var input_field = document.createElement("input");
+    var lab_el = document.createElement("label");
+    var brk = document.createElement("br")
+    holdDiv.setAttribute('className','row')
+    lab_el.setAttribute('className','label-control sofia')
+    secondChild.setAttribute('className','form-group')
+    input_field.setAttribute('className','form-control input-lg sofia')
+    input_field.setAttribute('type','text')
+    input_field.setAttribute('id',inc)
+    input_field.setAttribute('placeholder', "Full Name")
+    input_field.style.padding = '7px';
+    input_field.style.borderRadius = '4px';
+    lab_el.style.fontSize = '12px';
+    //lab_el.style.color = '#196df2';
+    
+    secondChild.appendChild(lab_el);
+    lab_el.innerHTML = labelName;
+    secondChild.appendChild(input_field);
+    holdDiv.appendChild(secondChild);
+    holdDiv.appendChild(brk)
+    
+    //ft.after(clone);
+    ft.append(holdDiv)
+    //clone
+  }
+
+<div className="row" id="form-clone">
+          <div className="col-sm-12">
+          <label className="label-control" style={{fontSize:'10px'}}>Person 1</label> <Input size="large" placeholder="Full Name"  />
+          </div>
+              <br/>
+          </div>
+  this.setState({
+    sel_num : value,
+    show_form:true
+  })
+// if(parseInt(value) > 1){
+//   this.setState({
+//     show_form:true
+//   })
+// }else{
+//   this.setState({
+//     show_form:false
+//   })
+// }
+  // setTimeout(() => {
+  // alert(this.state.sel_num);
+
+  // },500)
+}
 
     componentDidMount(){
         // init_jquery();
+        // $(document).ready(function(){
+        //   alert("ghjvbk")
+        //   $('#add-more').on('click', function() {
+        //   alert("fghj")
+        //   var clone = $('.form-clone-hold').clone('.form-clone');
+        //   $('.form-clone-hold').append(clone);
+        // });
+        // });
+        // $('#add-more').on('click', function() {
+        //   alert("fghj")
+        //   var clone = $('.form-clone-hold').clone('.form-clone');
+        //   $('.form-clone-hold').append(clone);
+        // });
     }
 
     render(){
+      const { Option } = Select;
         return(
+          
             <div>
             <div>
                 <Header/>
@@ -32,15 +142,15 @@ class HotelDetails extends Component {
         <section>
           <div className="rows inner_banner inner_banner_2">
             <div className="container">
-              <h2><span>The Pines Hotel</span></h2>
+              <h2><span className="sofia">The Pines Hotel</span></h2>
               <ul>
                 <li><a href="#inner-page-title">Home</a>
                 </li>
                 <li><i className="fa fa-angle-right" aria-hidden="true" /> </li>
-                <li><a href="#inner-page-title" className="bread-acti">Hotel Booking</a>
+                <li><a href="#inner-page-title" className="bread-acti sofia">Hotel Booking</a>
                 </li>
               </ul>
-              <p>Location: 28800 Independence Layout, Enugu State, Nigeria</p>
+              <p className="sofia">Location: 28800 Independence Layout, Enugu State, Nigeria</p>
             </div>
           </div>
         </section>
@@ -50,10 +160,10 @@ class HotelDetails extends Component {
             <div className="container">
               <div className="banner_book_1">
                 <ul>
-                  <li className="dl1">Location : Enugu, Nigeria</li>
-                  <li className="dl2">Price : N25,000</li>
-                  <li className="dl3">Duration : One Night</li>
-                  <li className="dl4"><Link to={"/Booking"}>Book Now</Link> </li>
+                  <li className="dl1 sofia">Location : Enugu, Nigeria</li>
+                  <li className="dl2 sofia">Price : N25,000</li>
+                  <li className="dl3 sofia">Duration : One Night</li>
+                  {/* <li className="dl4"><Link to={"#"}>Book Now</Link> </li> */}
                 </ul>
               </div>
             </div>
@@ -66,12 +176,12 @@ class HotelDetails extends Component {
               <div className="col-md-9">
                 {/*====== TOUR TITLE ==========*/}
                 <div className="tour_head">
-                  <h2>The Pines Hotel <span className="tour_star"><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star-half-o" aria-hidden="true" /></span><span className="tour_rat">4.5</span></h2> </div>
+                  <h2 className="sofia">The Pines Hotel <span className="tour_star"><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star-half-o" aria-hidden="true" /></span><span className="tour_rat">4.5</span></h2> </div>
                 {/*====== TOUR DESCRIPTION ==========*/}
                 <div className="tour_head1 hotel-com-color">
-                  <h3>About The Pines HOTEL</h3>
-                  <p>Discover two of South America’s greatest cities, Rio de Janeiro and Buenos Aires, at a leisurely pace. A major highlight on this journey is a visit to Iguassu Falls in between your two city stays. It truly is one of the most spectacular sights on Earth. See the impressive falls from both the Brazilian and Argentine sides.</p>
-                  <p>Brazil’s view takes you through clouds of mist and the opportunity to see these 275 falls, spanning nearly two miles! Argentina’s side allows you to walk along the boardwalk network and embark on a jungle train through the forest for unforgettable views. Hear the deafening roar and admire the brilliant rainbows created by the clouds of spray, and take in the majesty of this wonder of the world. From vibrant cities to scenic beauty, this vacation to Rio de Janeiro, Iguassu Falls, and Buenos Aires will leave you with vacation memories you’ll cherish for life.</p>
+                  <h3 className="sofia">About The Pines HOTEL</h3>
+                  <p className="sofia">Discover two of Nigeria’s greatest cities, Abuja and Lagos, at a leisurely pace. A major highlight on this journey is a visit to Lekki. It truly is one of the most spectacular sights on Earth. See the impressive falls from both the Nigerian and Ghanian sides.</p>
+                  <p className="sofia">Lagos’s view takes you through clouds of mist and the opportunity to see these 275 falls, spanning nearly two miles! Abuja’s side allows you to walk along the boardwalk network and embark on a jungle train through the forest for unforgettable views. Hear the deafening roar and admire the brilliant rainbows created by the clouds of spray, and take in the majesty of this wonder of the world. From vibrant cities to scenic beauty, this vacation to Lagos, Lekki Phase I, and Victoria Island will leave you with vacation memories you’ll cherish for life.</p>
                 </div>
                 {/*====== ROOMS: HOTEL BOOKING ==========*/}
                 <div className="tour_head1 hotel-book-room">
@@ -99,43 +209,11 @@ class HotelDetails extends Component {
                     <a className="right carousel-control" href="#myCarousel1" role="button" data-slide="next"> <span><i className="fa fa-angle-right hotel-gal-arr hotel-gal-arr1" aria-hidden="true" /></span> </a>
                   </div>
                 </div>
-                {/*====== ABOUT THE TOUR ==========*/}
-                <div className="tour_head1">
-                  <h3>special features</h3>
-                  <table>
-                    <tbody><tr>
-                        <th>Places covered</th>
-                        <th className="event-res">Inclusions</th>
-                        <th className="event-res">Exclusions</th>
-                        <th>Event Date</th>
-                      </tr>
-                      <tr>
-                        <td>Rio De Janeiro ,Brazil</td>
-                        <td className="event-res">Accommodation</td>
-                        <td className="event-res">Return Airfare &amp; Taxes</td>
-                        <td>Nov 12, 2017</td>
-                      </tr>
-                      <tr>
-                        <td>Iguassu Falls </td>
-                        <td className="event-res">8 Breakfast, 3 Dinners</td>
-                        <td className="event-res">Arrival &amp; Departure transfers</td>
-                        <td>Nov 14, 2017</td>
-                      </tr>
-                      <tr>
-                        <td>Peru,Lima </td>
-                        <td className="event-res">First-class Travel</td>
-                        <td className="event-res">travel insurance</td>
-                        <td>Nov 16, 2017</td>
-                      </tr>
-                      <tr>
-                        <td>Cusco &amp; Buenos Aires </td>
-                        <td className="event-res">Free Sightseeing</td>
-                        <td className="event-res">Service tax of 4.50%</td>
-                        <td>Nov 18, 2017</td>
-                      </tr>
-                    </tbody></table>
-                </div>
+           
+              
                 {/*====== HOTEL ROOM TYPES ==========*/}
+               
+               
                 <div className="tour_head1">
                   <h3>ROOMS &amp; AVAILABILITIES</h3>
                   <div className="tr-room-type">
@@ -147,7 +225,35 @@ class HotelDetails extends Component {
                           <div className="col-md-6 tr-room-type-list-2">
                             <h4>Ultra Deluxe</h4>
                             <p><b>Amenities: </b>Television, Wi-Fi, Hair dryer, Towels, Dining, Music, GYM and more.. </p> <span><b>Includes</b> : Free Parking, Breakfast, VAT</span> <span><b>Maxinum </b> : 4 Persons</span> </div>
-                          <div className="col-md-3 tr-room-type-list-3"> <span className="hot-list-p3-1">Price Per Night</span> <span className="hot-list-p3-2">N24,000</span> <Link to={"/Booking"} className="hot-page2-alp-quot-btn spec-btn-text">Book Now</Link> </div>
+                          <div className="col-md-3 tr-room-type-list-3 text-center"> <span className="hot-list-p3-1">Price Per Night</span> <span className="hot-list-p3-2">{currencyFormat(24000)}</span> 
+                          <center>
+                          <button className="hot-page2-alp-quot-btn spec-btn-text" onClick={() => this.setState({add_hotel:true})}>Select Room</button> 
+                        
+                          </center>
+                              {/* <div className="row text-center"> */}
+                                {/* <div className="col-sm-3 text-center">
+                                  
+                               
+                                </div> */}
+
+                                {/* <div className="col-sm-4 text-center">
+                                  
+                                  <select className="form-control">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                  </select>
+                                  </div> */}
+{/* 
+                                <div className="col-md-6">
+                                  
+                                  <select className="form-control">
+                                    <option></option>
+                                  </select>
+                                  </div> */}
+                                    {/* <span class="input-number-decrement">–</span><input class="input-number" type="text" defaultValue="1" min="0" max="10"/><span class="input-number-increment">+</span> */}
+                              {/* </div> */}
+                          </div>
                         </div>
                       </li>
                       <li>
@@ -157,15 +263,90 @@ class HotelDetails extends Component {
                           <div className="col-md-6 tr-room-type-list-2">
                             <h4>Premium Rooms(EXECUTIVE)</h4>
                             <p><b>Amenities: </b>Television, Wi-Fi, Hair dryer, Towels, Dining, Music, GYM and more.. </p> <span><b>Includes</b> : Free Parking, Breakfast, VAT</span> <span><b>Maxinum </b> : 4 Persons</span> </div>
-                          <div className="col-md-3 tr-room-type-list-3"> <span className="hot-list-p3-1">Price Per Night</span> <span className="hot-list-p3-2">N17,000</span> <a href="booking.html" className="hot-page2-alp-quot-btn spec-btn-text">Book Now</a> </div>
+                          <div className="col-md-3 tr-room-type-list-3"> <span className="hot-list-p3-1">Price Per Night</span> <span className="hot-list-p3-2">{currencyFormat(17000)}</span>
+                          <center>
+                          <button className="hot-page2-alp-quot-btn spec-btn-text" onClick={() => this.setState({add_hotel:true})}>Select Room</button> 
+                        
+                          </center>
+                            </div>
                         </div>
                       </li>
                  
                     
                     </ul>
+                    <div style={{alignItems:'end'}}>
+                          <Link to={"/Book"} className="btn btn-primary" style={{width:'100%', background:'#050080'}}>Book Now</Link> 
+                          </div>
                   </div>
                 </div>
-                {/*====== AMENITIES ==========*/}
+                
+                <Modal className="sofia" title="ULTRA DELUXE" visible={this.state.add_hotel} onCancel={() => this.setState({add_hotel:false, show_form:false})}
+                
+                footer={[
+                 
+                  <button  className="btn btn-primary sofia" onClick={this.saveDetails} style={{marginRight:'10px'}}>
+                    Save & Continue
+                  </button>,
+                   <button className="btn btn-default sofia" onClick={this.closeModal}>
+                   Cancel
+                 </button>
+                 
+                ]}
+                
+                >
+
+<label className="label-control col-sm-12 sofia" style={{fontSize:'12px', paddingLeft:'0px'}}>* Number of Rooms *</label>
+               <Select defaultValue={this.state.defaultRoomCount} className="select-after sofia" onChange={this.resolveNumberOfRooms}>
+    <Option value="1">1</Option>
+    <Option value="2">2</Option>
+    <Option value="3">3</Option>
+    <Option value="4">4</Option>
+  </Select>
+
+  
+       
+  
+  <div>
+  <br/>
+  <br/>
+  <div className="row" id="form-clone">
+          <div className="col-sm-12">
+          <label className="label-control sofia" style={{fontSize:'12px'}}><b>Person 1 Full Name (Main Contact)</b></label> <Input size="large" placeholder="Full Name"  />
+          </div>
+
+             <div className="col-sm-6">
+             <br/>
+          <label className="label-control sofia" style={{fontSize:'12px'}}><b>Phone Number</b></label> <Input size="large" placeholder="080 xxxx xxxx"  />
+          </div>
+          <div className="col-sm-6">
+             <br/>
+          <label className="label-control sofia" style={{fontSize:'12px'}}><b>Email Address</b></label> <Input size="large" placeholder="example@gmail.com"  />
+          </div>
+
+          </div>
+          <br/>
+          <hr/>
+  <div id="form-clone-hold">
+          {/* <div className="row" id="form-clone">
+          <div className="col-sm-12">
+          <label className="label-control" style={{fontSize:'10px'}}>Person 1</label> <Input size="large" placeholder="Full Name"  />
+          </div>
+              <br/>
+          </div> */}
+
+  </div>
+    
+    
+
+    </div>
+    
+    
+
+
+
+
+      </Modal> 
+                {/*====== AMENITIES ==========
                 <div className="tour_head1 hot-ameni">
                   <h3>Hotel Amenities</h3>
                   <ul>
@@ -368,8 +549,7 @@ class HotelDetails extends Component {
             </div>
           </div>
         </section>
-        {/*====== TIPS BEFORE TRAVEL ==========*/}
-        {/*========= Scripts ===========*/}
+       <Footer/>
       </div>
             </div>
         )

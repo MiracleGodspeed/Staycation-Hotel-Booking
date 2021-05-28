@@ -6,10 +6,13 @@ import Home from "./Components/Common/Index"
 import Login from "./Components/User/Login"
 import Register from "./Components/User/Register"
 import HotelDetails from "./Components/User/Hotel_Details"
+import UserProfile from "./Components/User/Profile"
+import UserCheckout from "./Components/User/UserCheckout"
 import Booking from "./Components/User/Booking"
 import AdminDashboard from "./Components/Admin/Dashboard"
 import SideBar from "./Components/Admin/SideBar"
 import DashboardTwo from "./Components/Admin/DashBoardTwo"
+import AddHotel from "./Components/Admin/AddHotel"
 // import AdminDashboard from "./Layouts/Admin/AdminLayout"
 import UserLayout from "./Layouts/User/UserLayout"
 import DashboardSecond from "./Components/Admin/DashBoardTwo";
@@ -41,6 +44,9 @@ export class App extends Component {
           <Route path={"/AdminDashboard"} component={AdminDashboard} />
           <Route path={"/Side"} component={SideBar} />
           <Route path={"/Dashboard2"} component={DashboardSecond} />
+          <Route path={"/UserProfile"} component={UserProfile} />
+          <Route path={"/AddHotel"} component={AddHotel} />
+          <Route path={"/Book"} component={UserCheckout} />
         </Switch>
         {/* <PageLoader/> */}
       </BrowserRouter>

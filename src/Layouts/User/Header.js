@@ -1,64 +1,153 @@
-import React, { Component } from 'react';
-import {init_jquery} from "../../Assets/js/custom"
-import logo from "../../Assets/images/logo.png"
-import logo2 from "../../Assets/images/logo-bg1.png"
-import logo3 from "../../Assets/images/logo-bg.png"
-import {Link} from 'react-router-dom'
+import React, { Component } from "react";
+import { init_jquery } from "../../Assets/js/custom";
+import logo from "../../Assets/images/logo.png";
+import logo2 from "../../Assets/images/logo-bg1.png";
+import logo3 from "../../Assets/images/logo-bg.png";
+import { Link } from "react-router-dom";
+import $ from "jquery";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
+
 // import UserLayout from "../../Layouts/User/UserLayout"
 
-
-
 class Header extends Component {
-    state={
+  state = {
+    user_details: JSON.parse(localStorage.getItem("userData")),
+  };
 
-    }
+  logOutUser = () => {
+    localStorage.clear();
+    window.location.href = "/";
+  }
 
+  componentDidMount() {
+    init_jquery();
+    $("#email-dd").on("click", function () {
+      // $(".nav-dd").toggle(200)
+      $(".meno-ul").toggleClass("active");
+    });
+  }
 
-    componentDidMount(){ 
-        init_jquery();
-    }
-
-    render(){
-      // require('../../Assets/js/custom.js')
-      require('../../Assets/css/style.css')
-      require('../../Assets/css/mob.css')
-      require('../../Assets/css/materialize.css')
-      require('../../Assets/css/bootstrap.css')
-      require('../../Assets/css/animate.css')
-        return(
-            <div>
-            {/* <UserLayout/> */}
-                 {/* Preloader */}
+  render() {
+    // require('../../Assets/js/custom.js')
+    require("../../Assets/css/style.css");
+    require("../../Assets/css/mob.css");
+    require("../../Assets/css/materialize.css");
+    require('../../Assets/css/bootstrap.css')
+    require("../../Assets/css/animate.css");
+    return (
+      <div>
         <div id="preloader">
           <div id="status">&nbsp;</div>
         </div>
         {/* MOBILE MENU */}
         <section>
-
           <div className="ed-mob-menu">
             <div className="ed-mob-menu-con">
               <div className="ed-mm-left">
                 <div className="wed-logo">
-                  <Link to={"/"}><img src={logo3} alt="" />
+                  <Link to={"/"}>
+                    <img src={logo3} alt="" />
                   </Link>
                 </div>
               </div>
               <div className="ed-mm-right">
                 <div className="ed-mm-menu">
-                  <a href="#!" className="ed-micon"><i className="fa fa-bars" /></a>
+                  <a href="#!" className="ed-micon">
+                    <i className="fa fa-bars" />
+                  </a>
                   <div className="ed-mm-inn">
-                    <a href="#!" className="ed-mi-close"><i className="fa fa-times" /></a>
+                    <a href="#!" className="ed-mi-close">
+                      <i className="fa fa-times" />
+                    </a>
                     <h4>Menu</h4>
+                    {this.state.user_details != null ?
+                   <div className="user-nav" style={{ marginTop: "2px" }}>
+                   <UncontrolledDropdown
+                     nav
+                     inNavbar
+                     style={{
+                       fontSize: "10px",
+                       listStyleType: "none",
+                       textDecoration: "none",
+                     }}
+                   >
+                     <DropdownToggle
+                       nav
+                       caret
+                       style={{
+                         fontSize: "12px",
+                         listStyleType: "none",
+                         textDecoration: "none",
+                         background:'rgb(44 139 145)',
+                         padding:'2px'
+
+                       }}
+                       className="badge badge-primary sofia"
+                     >
+                       miracleoghenemado@gmail.com <i className="fa fa-angle-down"/>
+                     </DropdownToggle>
+
+                     <DropdownMenu right style={{ padding: "9px" }}>
+                       <DropdownItem
+                         className="col-md-12"
+                         style={{
+                           border: "none",
+                           background: "#FFF",
+                           marginBottom: "4px",
+                         }}
+                       >
+                         <a style={{ color: "black" }} className="sofia" href="/UserProfile">
+                         <i className="fa fa-th-large" aria-hidden="true" /> Manage Bookings
+                         </a>
+                       </DropdownItem>
+
+                       <DropdownItem
+                         className="col-md-12"
+                         style={{
+                           border: "none",
+                           background: "#FFF",
+                           marginBottom: "10px",
+                         }}
+                       >
+                         <a style={{ color: "black" }} className="sofia" href="/UserProfile">
+                         <i className="fa fa-user-o" aria-hidden="true" /> &nbsp; Manage Account
+                         </a>
+                       </DropdownItem>
+
+                       <DropdownItem className="col-md-12" style={{border:'none', background:'#FFF', marginBottom:'10px'}}>
+                         <Link onClick={this.logOutUser} style={{marginTop:"7px", background:'#ec2e47!important', borderRadius:'10px'}} href="#" className="btn btn-danger sofia">
+                         Sign Out
+                         </Link>
+                         
+                       </DropdownItem>
+                     </DropdownMenu>
+                   </UncontrolledDropdown>
+
+                  
+                 </div> : 
                     <ul>
-                      <li><Link to={"/Login"}>Sign In</Link></li>
-                      <li><Link to={"/Register"}>Sign Up</Link></li>
-                      <li><Link to={"/Booking"}>Book Now</Link></li>
-                      <li><Link to={"#"}>-</Link></li>
-                      
-                    </ul>
-                    
-                    
-                 
+                      <li>
+                        <Link to={"/Login"}>Sign In</Link>
+                      </li>
+                      <li>
+                        <Link to={"/Register"}>Sign Up</Link>
+                      </li>
+                      <li>
+                        <Link to={"/Booking"}>Book Now</Link>
+                      </li>
+                    </ul>}
                   </div>
                 </div>
               </div>
@@ -69,33 +158,120 @@ class Header extends Component {
         <section>
           {/* TOP BAR */}
           <div className="ed-top">
-            <div className="container">
+            <div className="container-fluid">
               <div className="row">
                 <div className="col-md-12">
                   <div className="ed-com-t1-left">
                     <ul>
-                      <li><a href="#">Contact: Lekki Phase I, Lagos State</a>
-                      </li>
-                      <li><a href="#">Phone: +234-1231-1231</a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div className="ed-com-t1-right">
-                    <ul>
-                      <li><Link to={"/Login"}>Sign In</Link>
+                      <li>
+                        <a href="#">Contact: Lekki Phase I, Lagos State</a>
                       </li>
                       <li>
-                      <Link to={"/Register"}>Sign Up</Link>
+                        <a href="#">Phone: +234-1231-1231</a>
                       </li>
                     </ul>
                   </div>
+                  {this.state.user_details != null ?
+                   <div className="user-nav" style={{ marginTop: "2px" }}>
+                   <UncontrolledDropdown
+                     nav
+                     inNavbar
+                     style={{
+                       fontSize: "14px",
+                       listStyleType: "none",
+                       textDecoration: "none",
+                     }}
+                   >
+                     <DropdownToggle
+                       nav
+                       caret
+                       style={{
+                         fontSize: "14px",
+                         listStyleType: "none",
+                         textDecoration: "none",
+                         background:'rgb(44 139 145)',
+                         padding:'8px'
+
+                       }}
+                       className="badge badge-primary sofia"
+                     >
+                       miracleoghenemado@gmail.com <i className="fa fa-angle-down"/>
+                     </DropdownToggle>
+
+                     <DropdownMenu right style={{ padding: "9px" }}>
+                       <DropdownItem
+                         className="col-md-12"
+                         style={{
+                           border: "none",
+                           background: "#FFF",
+                           marginBottom: "10px",
+                         }}
+                       >
+                         <a style={{ color: "black" }} className="sofia" href="/UserProfile">
+                         <i className="fa fa-th-large" aria-hidden="true" /> Manage Bookings
+                         </a>
+                       </DropdownItem>
+
+                       <DropdownItem
+                         className="col-md-12"
+                         style={{
+                           border: "none",
+                           background: "#FFF",
+                           marginBottom: "10px",
+                         }}
+                       >
+                         <a style={{ color: "black" }} className="sofia" href="/UserProfile">
+                         <i className="fa fa-user-o" aria-hidden="true" /> &nbsp; Manage Account
+                         </a>
+                       </DropdownItem>
+
+                       <DropdownItem className="col-md-12" style={{border:'none', background:'#FFF', marginBottom:'10px'}}>
+                         <Link onClick={this.logOutUser} style={{marginTop:"7px", background:'#ec2e47!important', borderRadius:'10px'}} href="#" className="btn btn-danger sofia">
+                         Sign Out
+                         </Link>
+                         
+                       </DropdownItem>
+                     </DropdownMenu>
+                   </UncontrolledDropdown>
+
+                  
+                 </div>
+                 
+                 :  <div className="ed-com-t1-right">
+                     
+                 <ul>
+                   <li><Link to={"/Login"}>Sign In</Link>
+                   </li>
+                   <li>
+                   <Link to={"/Register"}>Sign Up</Link>
+                   </li>
+                 </ul>
+               </div>
+                }
+                 
+                  {/* <div className="meno" style={{width:'200px', height:'200px', background:'black', display:'none'}}>
+                  <ul className="meno-ul">
+                        <li><a href="#" style={{color:'black'}}>Dashboard</a></li>
+                        
+                      </ul>
+                      </div> */}
+                 
                   <div className="ed-com-t1-social">
                     <ul>
-                      <li><a href="#"><i className="fa fa-facebook" aria-hidden="true" /></a>
+                      <li>
+                        <a href="#">
+                          <i className="fa fa-facebook" aria-hidden="true" />
+                        </a>
                       </li>
-                      <li><a href="#"><i className="fa fa-google-plus" aria-hidden="true" /></a>
+                      <li>
+                        <a href="#">
+                          <i className="fa fa-google-plus" aria-hidden="true" />
+                        </a>
                       </li>
-                      <li><a href="#"><i className="fa fa-twitter" aria-hidden="true" /></a>
+                      <li>
+                        <a href="#">
+                          <i className="fa fa-twitter" aria-hidden="true" />
+                        </a>
                       </li>
                     </ul>
                   </div>
@@ -109,23 +285,30 @@ class Header extends Component {
               <div className="row">
                 <div className="col-md-12">
                   <div className="wed-logo">
-                    <Link to={"/"}><img src={logo2} alt="" />
+                    <Link to={"/"}>
+                      <img src={logo2} alt="" />
                     </Link>
                   </div>
                   <div className="main-menu">
                     <ul>
-                        <li><Link to={"/"}>Home</Link>
-                        </li>
-                    
-                        <li><a href="#">Hotels</a></li>
-                        {/*<li><a class='dropdown-button ed-sub-menu' href='#' data-activates='dropdown1'>Courses</a></li>*/}
-                    
-                        <li><a href="#">Events</a>
-                        </li>
-                        <li><a href="#">Profile</a>
-                        </li>
-                        <li><a href="#">Contact us</a>
-                        </li>
+                      <li>
+                        <Link to={"/"}>Home</Link>
+                      </li>
+
+                      <li>
+                        <a href="#">Hotels</a>
+                      </li>
+                      {/*<li><a class='dropdown-button ed-sub-menu' href='#' data-activates='dropdown1'>Courses</a></li>*/}
+
+                      <li>
+                        <a href="#">Events</a>
+                      </li>
+                      <li>
+                        <a href="#">Profile</a>
+                      </li>
+                      <li>
+                        <a href="#">Contact us</a>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -173,9 +356,9 @@ class Header extends Component {
             </div>
         </div>*/}
         </section>
-            </div>
-        )
-    }
+      </div>
+    );
+  }
 }
 
 export default Header;

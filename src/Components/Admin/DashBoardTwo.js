@@ -10,6 +10,7 @@ import {
 import {DashTrigger} from "../../Assets/Sidebar/Dash"
 import {init_jquery} from "../../Assets/js/custom"
 import {DashboardOutlined, AppstoreOutlined, DollarOutlined} from '@ant-design/icons';
+import AdminHeader from "../../Layouts/Admin/Header"
 // import "../../Assets/Sidebar/dash.css";
 
 
@@ -24,9 +25,9 @@ class DashboardSecond extends Component {
     }
     componentDidMount(){
      
-        init_jquery();
+        //init_jquery();
        
-          DashTrigger();
+          //DashTrigger();
           
       
     }
@@ -36,123 +37,16 @@ require("../../Assets/Sidebar/dash.css")
   return (
 
     <div>
-        <div id="preloader">
-          <div id="status">&nbsp;</div>
-        </div>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossOrigin="anonymous"/>
-        
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet"></link>
-        
-        <aside className="side-nav" id="show-side-navigation1">
-          <i className="fa fa-bars close-aside hidden-sm hidden-md hidden-lg" data-close="show-side-navigation1" />
-          
-          
-          <div className="heading">
-            <img src="https://media.istockphoto.com/photos/north-african-black-young-woman-picture-id1060680104?k=6&m=1060680104&s=612x612&w=0&h=l5gSeqNZEwIeiwnE3koRr992nm5TLYVvKPiaNbLKRRo=" alt="" />
-            <div className="info">
-              <h3><a href="#">Godspeed Miracle</a></h3>
-              <p>User</p>
-            </div>
-          </div>
-          <div className="search">
-            {/* <input type="text" style={{color:'grey'}} placeholder="Type here" /><i className="fa fa-search" /> */}
-          </div>
-          <ul className="categories">
-            <li><i className="fa fa-home fa-fw" aria-hidden="true" /><a href="#">Home</a>
-              <ul className="side-nav-dropdown">
-                <li><Link to={"/"}>Staycation Home</Link></li>
-                <li><a href="#">Dashboard</a></li>
-                
-              </ul>
-            </li>
-            <li><i className="fa fa-support fa-fw" /><a href="#">My Trips</a>
-              <ul className="side-nav-dropdown">
-                <li><a href="#">Trip History</a></li>
-                
-              </ul>
-            </li>
-            <li><i className="fa fa-envelope fa-fw" /><a href="#">My Bookings</a>
-              <ul className="side-nav-dropdown">
-                <li><a href="#">Completed Bookings</a></li>
-                <li><a href="#">Uncompleted Bookings</a></li>
-                <li><a href="#">All Bookings</a></li>
-               
-              </ul>
-            </li>
-            <li><i className="fa fa-star fa-fw" /><a href="#">Favourites</a>
-              <ul className="side-nav-dropdown">
-                <li><a href="#">View Favourites</a></li>
-                <li><a href="#">Explore and Add</a></li>
-                
-              </ul>
-            </li>
-            <li><i className="fa fa-dollar fa-fw" /><a href="#">Payments</a>
-              <ul className="side-nav-dropdown">
-                <li><a href="#">Successful Payments</a></li>
-                <li><a href="#">Declined Payments</a></li>
-                
-              </ul>
-            </li>
-            <p>More</p>
-            <li><i className="fa fa-gift fa-fw" /><a href="#"> Staycation Specials <span className="num dang">4</span></a>
-            <ul className="side-nav-dropdown">
-                <li><a href="#">Hotel Bonuses</a></li>
-                <li><a href="#">Tours</a></li>
-                
-              </ul>
-            </li>
-            <li><i className="fa fa-info fa-fw" /><a href="#">Hotel Recommendations <span className="num dang">2</span></a>
-            <ul className="side-nav-dropdown">
-                <li><a href="#">--</a></li>
-                
-              </ul>
-            </li>
-            <li><i className="fa fa-wrench fa-fw" /><a href="#">Account Settings</a>
-              <ul className="side-nav-dropdown">
-                <li><a href="#">Change Password</a></li>
-                <li><a href="#">Account Delete Request</a></li>
-                <li><Link to={"/Login"}>Log Out</Link></li>
-                
-              </ul>
-            </li>
-            
-          </ul>
-        </aside>
+   <AdminHeader/>
         <section id="contents">
-          <nav className="navbar navbar-default">
-            <div className="container-fluid">
-              <div className="navbar-header">
-                <button type="button" className="navbar-toggle show-side-btn" data-show="show-side-navigation1">
-                  <i className="fa fa-align-right" />
-                </button>
-                <a className="navbar-brand" href="/">Stay<span className="main-color">Cation</span></a>
-              </div>
-              <div className="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
-                <ul className="nav navbar-nav">
-                  <li className="dropdown">
-                    <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My profile <span className="caret" /></a>
-                    <ul className="dropdown-menu">
-                      <li><a href="#"><i className="fa fa-user-o fw" /> My account</a></li>
-                      <li><a href="#"><i className="fa fa-envelope-o fw" /> My inbox</a></li>
-                      <li><a href="#"><i className="fa fa-question-circle-o fw" /> Help</a></li>
-                      <li role="separator" className="divider" />
-                      <li><a href="/Login"><i className="fa fa-sign-out" /> Log out</a></li>
-                    </ul>
-                  </li>
-                  {/* <li><a href="#"><i className="fa fa-comments" /><span>23</span></a></li> */}
-                  <li><a href="#"><i className="fa fa-bell-o" /><span>98</span></a></li>
-                  <li><a href="#"><i data-show="show-side-navigation1" className="fa fa-bars show-side-btn" /></a></li>
-                </ul>
-              </div>
-            </div>
-          </nav>
+
+         
           <div className="welcome">
             <div className="container-fluid">
               <div className="row">
                 <div className="col-md-12">
                   <div className="content">
-                    <h2>Hello Miracle!</h2>
+                    <h2 className="sofia">Hello Miracle!</h2>
                     <p>Thank you for choosing StayCation</p>
                   </div>
                 </div>
@@ -232,7 +126,7 @@ require("../../Assets/Sidebar/dash.css")
               </div>
             </div>
           </section>
-          <section className="charts">
+          {/* <section className="charts">
             <div className="container-fluid">
               <div className="row">
                 <div className="col-md-6">
@@ -249,8 +143,10 @@ require("../../Assets/Sidebar/dash.css")
                 </div>
               </div>
             </div>
-          </section>
-          <section className="admins">
+          </section> */}
+
+
+          {/* <section className="admins">
             <div className="container-fluid">
               <div className="row">
                 <div className="col-md-6">
@@ -295,7 +191,7 @@ require("../../Assets/Sidebar/dash.css")
                 </div>
               </div>
             </div></section>
-         
+          */}
           <section className="chrt3">
             <div className="container-fluid">
               <div className="row">
@@ -312,6 +208,8 @@ require("../../Assets/Sidebar/dash.css")
             </div>
           </section>
         </section>
+      
+      
       </div>
 
   );
