@@ -8,18 +8,22 @@ import {DashTrigger} from "../../Assets/Sidebar/Dash"
 import Header from "../../Layouts/User/Header"
 import SideMenu from "../../Components/User/SideMenu"
 import Notifications from "../../Components/User/NotificationComp"
+import {isTokenValid, validateToken} from "../../Utils/auth"
 
 
+
+let user = JSON.parse(localStorage.getItem("staycation_user"));
 
 class UserProfile extends Component {
     state={
-
+        user_details: JSON.parse(localStorage.getItem("staycation_user"))
     }
 
 
     componentDidMount(){ 
+      window.scrollTo(0, 0);
         init_jquery();
-        // DashTrigger();
+        validateToken();
     }
 
     render(){
@@ -44,34 +48,34 @@ class UserProfile extends Component {
                 <table className="responsive-table">
                   <tbody>
                     <tr>
-                      <td>User Name</td>
+                      <td>Name</td>
                       <td>:</td>
-                      <td>O. Godspeed Miracle</td>
+                      <td>{this.state.user_details?.data?.last_name} {this.state.user_details?.data?.first_name}</td>
                     </tr>
-                    <tr>
+                    {/* <tr>
                       <td>Password</td>
                       <td>:</td>
                       <td>staycation_password</td>
-                    </tr>
+                    </tr> */}
                     <tr>
-                      <td>Eamil</td>
+                      <td>Email</td>
                       <td>:</td>
-                      <td>miracle_godspeed@gmail.com</td>
+                      <td>{this.state.user_details?.data?.email}</td>
                     </tr>
                     <tr>
                       <td>Phone</td>
                       <td>:</td>
-                      <td>+234 70 4561 3214</td>
+                      <td>{this.state.user_details?.data?.phone}</td>
                     </tr>
                     <tr>
                       <td>Date of birth</td>
                       <td>:</td>
-                      <td>03 Jun 19**</td>
+                      <td>** ** ***</td>
                     </tr>
                     <tr>
                       <td>Address</td>
                       <td>:</td>
-                      <td>Lekki Phase I, Lagos State</td>
+                      <td>-</td>
                     </tr>
                     <tr>
                       <td>Status</td>
@@ -82,7 +86,7 @@ class UserProfile extends Component {
                   </tbody>
                 </table>
                 <div className="db-mak-pay-bot">
-                  <p>Hi Miracle! Kindly confirm that profile details provided above are accurate. If not, hit the Edit button below</p> <a href="#" className="btn btn-primary  waves-effect waves-light btn-large">Edit my profile</a> </div>
+                  <p className="sofia">Hi <b>{this.state.user_details?.data?.first_name}</b>, Kindly confirm that profile details provided above are accurate. If not, hit the Edit button below</p> <Link to={"/EditProfile"} className="btn btn-primary link-btn">Edit my profile</Link> </div>
               </div>
             </div>
           </div>
@@ -91,6 +95,8 @@ class UserProfile extends Component {
         </div>
       </section>
          </div>
+        
+        
         )
     }
 }

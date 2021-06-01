@@ -21,12 +21,15 @@ import {currencyFormat} from "../../Helpers/Helpers"
 
 class UserCheckout extends Component {
     state={
-
+      hotel_info: this.props.location.state.data
     }
 
 
     componentDidMount(){ 
-        init_jquery();
+
+        // init_jquery();
+      window.scrollTo(0, 0);
+
         // DashTrigger();
     }
 
@@ -39,14 +42,14 @@ class UserCheckout extends Component {
              <Header/>
 
  
-             <section>
+    <section>
         <div className="v2-hom-search">
           <div className="container">
             <div className="row">
               
               <div className="col-md-6">
                 <div className>
-                  <form className="contact__form v2-search-form" method="post" action="http://rn53themes.net/themes/demo/travelz/mail/tourbooking.php">
+                  <form className="contact__form v2-search-form" method="post" action="#">
                     <div className="alert alert-success contact__msg" style={{display: 'none'}} role="alert">
                       Thank you for arranging a wonderful trip for us! Our team will contact you shortly!
                     </div>
@@ -79,7 +82,7 @@ class UserCheckout extends Component {
             
                     <div className="row">
                       <div className="input-field col s12">
-                        <input type="submit" value="Book Now" style={{background:'#004180'}} className="waves-effect waves-light tourz-sear-btn v2-ser-btn" />
+                        <input type="submit" value="Book Now" className="waves-effect waves-light tourz-sear-btn v2-ser-btn cation-back" />
                       </div>
                     </div>
                   </form>
@@ -94,13 +97,13 @@ class UserCheckout extends Component {
                     </div>
                     <div className="row">
                  
-                          <div className="col-md-3 tr-room-type-list-1"><img src={room02} alt="" />
+                          <div className="col-md-3 tr-room-type-list-1"><img src={this.state.hotel_info?.bannerImage} alt="" />
                           </div>
                           <div className="col-md-8 tr-room-type-list-2">
-                            <h4>Bon Sunshine Luxury Hotels</h4>
+                            <h4>{this.state.hotel_info?.Name}</h4>
                             <p>
                                 {/* <b>Premium Rooms(EXECUTIVE) </b> */}
-                                Lekki Phase I, Lagos State</p> 
+                                {this.state.hotel_info?.Address}</p> 
                              </div>
                         
                         
@@ -154,7 +157,7 @@ class UserCheckout extends Component {
                     
                     <div className="row">
                       <div className="input-field col s12">
-                        <input type="submit" value="Process Payment" style={{background:'#004180'}} className="waves-effect waves-light tourz-sear-btn v2-ser-btn" />
+                        <input type="submit" value="Process Payment" className="waves-effect waves-light tourz-sear-btn v2-ser-btn cation-back" />
                       </div>
                     </div>
                   </form>

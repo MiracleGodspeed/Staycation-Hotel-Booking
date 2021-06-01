@@ -28,9 +28,30 @@ const openNotification = () => {
 
 
 class HotelDetails extends Component {
+
     state={
-      defaultRoomCount:1
+      defaultRoomCount:1,
+      hotel_Info: this.props.location.state.data,
+      booking_load:{
+        hotel_name: this.props.location.state?.data?.Name,
+        primary_contact_name:"",
+        primary_contact_email:"",
+        primary_contact_phone:"",
+        person_count:0,
+        room_count:0,
+        room_info:[],
+        total_payable:0
+      }
     }
+
+
+activeData = (data) => {
+  this.setState({
+    add_hotel:true,
+    name: data.Name
+  })
+}
+
 closeModal = () => {
   this.setState({add_hotel:false, show_form:false, defaultRoomCount:1})
   this.resolveNumberOfRooms(1);
@@ -99,36 +120,13 @@ ft.innerHTML = '';
     sel_num : value,
     show_form:true
   })
-// if(parseInt(value) > 1){
-//   this.setState({
-//     show_form:true
-//   })
-// }else{
-//   this.setState({
-//     show_form:false
-//   })
-// }
-  // setTimeout(() => {
-  // alert(this.state.sel_num);
 
-  // },500)
 }
 
     componentDidMount(){
-        // init_jquery();
-        // $(document).ready(function(){
-        //   alert("ghjvbk")
-        //   $('#add-more').on('click', function() {
-        //   alert("fghj")
-        //   var clone = $('.form-clone-hold').clone('.form-clone');
-        //   $('.form-clone-hold').append(clone);
-        // });
-        // });
-        // $('#add-more').on('click', function() {
-        //   alert("fghj")
-        //   var clone = $('.form-clone-hold').clone('.form-clone');
-        //   $('.form-clone-hold').append(clone);
-        // });
+      // this.handleScroll()
+      window.scrollTo(0, 0);
+  
     }
 
     render(){
@@ -140,9 +138,11 @@ ft.innerHTML = '';
                 <Header/>
         {/*====== BANNER ==========*/}
         <section>
-          <div className="rows inner_banner inner_banner_2">
+          <div className="rows inner_banner" style={{backgroundImage: `url(${this.state.hotel_Info?.bannerImage})`}}>
             <div className="container">
-              <h2><span className="sofia">The Pines Hotel</span></h2>
+              <h2><span className="sofia">
+                {this.state.hotel_Info?.Name}
+              </span></h2>
               <ul>
                 <li><a href="#inner-page-title">Home</a>
                 </li>
@@ -150,7 +150,7 @@ ft.innerHTML = '';
                 <li><a href="#inner-page-title" className="bread-acti sofia">Hotel Booking</a>
                 </li>
               </ul>
-              <p className="sofia">Location: 28800 Independence Layout, Enugu State, Nigeria</p>
+              <p className="sofia">{this.state.hotel_Info?.Address}</p>
             </div>
           </div>
         </section>
@@ -160,8 +160,8 @@ ft.innerHTML = '';
             <div className="container">
               <div className="banner_book_1">
                 <ul>
-                  <li className="dl1 sofia">Location : Enugu, Nigeria</li>
-                  <li className="dl2 sofia">Price : N25,000</li>
+                  <li className="dl1 sofia">City : {this.state.hotel_Info?.City}</li>
+                  <li className="dl2 sofia">Price : {currencyFormat(this.state.hotel_Info?.PricePerNight)}</li>
                   <li className="dl3 sofia">Duration : One Night</li>
                   {/* <li className="dl4"><Link to={"#"}>Book Now</Link> </li> */}
                 </ul>
@@ -176,12 +176,11 @@ ft.innerHTML = '';
               <div className="col-md-9">
                 {/*====== TOUR TITLE ==========*/}
                 <div className="tour_head">
-                  <h2 className="sofia">The Pines Hotel <span className="tour_star"><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star-half-o" aria-hidden="true" /></span><span className="tour_rat">4.5</span></h2> </div>
+                  <h2 className="sofia"> {this.state.hotel_Info?.Name} <span className="tour_star"><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star-half-o" aria-hidden="true" /></span><span className="tour_rat">4.5</span></h2> </div>
                 {/*====== TOUR DESCRIPTION ==========*/}
                 <div className="tour_head1 hotel-com-color">
-                  <h3 className="sofia">About The Pines HOTEL</h3>
-                  <p className="sofia">Discover two of Nigeria’s greatest cities, Abuja and Lagos, at a leisurely pace. A major highlight on this journey is a visit to Lekki. It truly is one of the most spectacular sights on Earth. See the impressive falls from both the Nigerian and Ghanian sides.</p>
-                  <p className="sofia">Lagos’s view takes you through clouds of mist and the opportunity to see these 275 falls, spanning nearly two miles! Abuja’s side allows you to walk along the boardwalk network and embark on a jungle train through the forest for unforgettable views. Hear the deafening roar and admire the brilliant rainbows created by the clouds of spray, and take in the majesty of this wonder of the world. From vibrant cities to scenic beauty, this vacation to Lagos, Lekki Phase I, and Victoria Island will leave you with vacation memories you’ll cherish for life.</p>
+                  <h3 className="sofia">About The  {this.state.hotel_Info?.Name}</h3>
+                  <p className="sofia">{this.state.hotel_Info?.About}</p>
                 </div>
                 {/*====== ROOMS: HOTEL BOOKING ==========*/}
                 <div className="tour_head1 hotel-book-room">
@@ -218,45 +217,29 @@ ft.innerHTML = '';
                   <h3>ROOMS &amp; AVAILABILITIES</h3>
                   <div className="tr-room-type">
                     <ul>
-                      <li>
-                        <div className="tr-room-type-list">
-                          <div className="col-md-3 tr-room-type-list-1"><img src={room01} alt="" />
-                          </div>
-                          <div className="col-md-6 tr-room-type-list-2">
-                            <h4>Ultra Deluxe</h4>
-                            <p><b>Amenities: </b>Television, Wi-Fi, Hair dryer, Towels, Dining, Music, GYM and more.. </p> <span><b>Includes</b> : Free Parking, Breakfast, VAT</span> <span><b>Maxinum </b> : 4 Persons</span> </div>
-                          <div className="col-md-3 tr-room-type-list-3 text-center"> <span className="hot-list-p3-1">Price Per Night</span> <span className="hot-list-p3-2">{currencyFormat(24000)}</span> 
-                          <center>
-                          <button className="hot-page2-alp-quot-btn spec-btn-text" onClick={() => this.setState({add_hotel:true})}>Select Room</button> 
-                        
-                          </center>
-                              {/* <div className="row text-center"> */}
-                                {/* <div className="col-sm-3 text-center">
+                      
+                        {this.state.hotel_Info?.Rooms && this.state.hotel_Info?.Rooms.map((i, r) => {
+                          return(
+                            <li>
+                            <div className="tr-room-type-list">
+                              <div className="col-md-3 tr-room-type-list-1"><img src={i.roomImage} alt="" />
+                              </div>
+                              <div className="col-md-6 tr-room-type-list-2">
+                                <h4>{i.Name}</h4>
+                                <p><b>Amenities: </b>{i.Amenities}</p> <span><b>Includes</b> : {i.Includes}</span> <span><b>Maxinum </b> : {i.Maximum_Persons}</span> </div>
+                              <div className="col-md-3 tr-room-type-list-3 text-center"> <span className="hot-list-p3-1">Price Per Night</span> <span className="hot-list-p3-2">{currencyFormat(i.PricePerNight)}</span> 
+                              <center>
+                              <button className="hot-page2-alp-quot-btn spec-btn-text" onClick={() => this.activeData(i)}>Select Room</button> 
+                            
+                              </center>
                                   
-                               
-                                </div> */}
-
-                                {/* <div className="col-sm-4 text-center">
-                                  
-                                  <select className="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                  </select>
-                                  </div> */}
-{/* 
-                                <div className="col-md-6">
-                                  
-                                  <select className="form-control">
-                                    <option></option>
-                                  </select>
-                                  </div> */}
-                                    {/* <span class="input-number-decrement">–</span><input class="input-number" type="text" defaultValue="1" min="0" max="10"/><span class="input-number-increment">+</span> */}
-                              {/* </div> */}
-                          </div>
-                        </div>
-                      </li>
-                      <li>
+                              </div>
+                            </div>
+                          </li>
+                          )
+                        })}
+                       
+                      {/* <li>
                         <div className="tr-room-type-list">
                           <div className="col-md-3 tr-room-type-list-1"><img src={room02} alt="" />
                           </div>
@@ -270,17 +253,17 @@ ft.innerHTML = '';
                           </center>
                             </div>
                         </div>
-                      </li>
+                      </li> */}
                  
                     
                     </ul>
                     <div style={{alignItems:'end'}}>
-                          <Link to={"/Book"} className="btn btn-primary" style={{width:'100%', background:'#050080'}}>Book Now</Link> 
+                          <Link to={{pathname:"/Book", state:{data:this.state.hotel_Info}}} className="link-btn text-center" style={{width:'100%', background:'#0962e3', padding:'2px'}}>Book Now</Link> 
                           </div>
                   </div>
                 </div>
                 
-                <Modal className="sofia" title="ULTRA DELUXE" visible={this.state.add_hotel} onCancel={() => this.setState({add_hotel:false, show_form:false})}
+                <Modal className="sofia" title={this.state.name} visible={this.state.add_hotel} onCancel={() => this.setState({add_hotel:false, show_form:false})}
                 
                 footer={[
                  
@@ -294,16 +277,27 @@ ft.innerHTML = '';
                 ]}
                 
                 >
-
-<label className="label-control col-sm-12 sofia" style={{fontSize:'12px', paddingLeft:'0px'}}>* Number of Rooms *</label>
+                  <div className="row">
+<div className="col-sm-6">
+<label className="label-control col-sm-12 sofia" style={{fontSize:'12px', paddingLeft:'0px'}}>* Number of Rooms</label>
+               <Select defaultValue={this.state.defaultRoomCount} className="select-after sofia">
+    <Option value="1">1</Option>
+    <Option value="2">2</Option>
+    <Option value="3">3</Option>
+    <Option value="4">4</Option>
+  </Select>
+  </div>
+  <div className="col-sm-6">
+  <label className="label-control col-sm-12 sofia" style={{fontSize:'12px', paddingLeft:'0px'}}>* Number of Persons</label>
                <Select defaultValue={this.state.defaultRoomCount} className="select-after sofia" onChange={this.resolveNumberOfRooms}>
     <Option value="1">1</Option>
     <Option value="2">2</Option>
     <Option value="3">3</Option>
     <Option value="4">4</Option>
   </Select>
+  </div>
+  </div>
 
-  
        
   
   <div>
@@ -311,7 +305,7 @@ ft.innerHTML = '';
   <br/>
   <div className="row" id="form-clone">
           <div className="col-sm-12">
-          <label className="label-control sofia" style={{fontSize:'12px'}}><b>Person 1 Full Name (Main Contact)</b></label> <Input size="large" placeholder="Full Name"  />
+          <label className="label-control sofia" style={{fontSize:'12px'}}><b>Person 1 (Primary/Main Contact)</b></label> <Input size="large" placeholder="Full Name"  />
           </div>
 
              <div className="col-sm-6">
@@ -346,35 +340,7 @@ ft.innerHTML = '';
 
 
       </Modal> 
-                {/*====== AMENITIES ==========
-                <div className="tour_head1 hot-ameni">
-                  <h3>Hotel Amenities</h3>
-                  <ul>
-                    <li><i className="fa fa-check" aria-hidden="true" /> Airport transportation (surcharge)</li>
-                    <li><i className="fa fa-check" aria-hidden="true" /> Number of floors - 9 </li>
-                    <li><i className="fa fa-check" aria-hidden="true" /> Coffee shop or café </li>
-                    <li><i className="fa fa-check" aria-hidden="true" /> Dry cleaning/laundry service</li>
-                    <li><i className="fa fa-check" aria-hidden="true" /> Health club </li>
-                    <li><i className="fa fa-check" aria-hidden="true" /> Billiards or pool table</li>
-                    <li><i className="fa fa-check" aria-hidden="true" /> Total number of rooms - 108</li>
-                    <li><i className="fa fa-check" aria-hidden="true" /> Bar/lounge </li>
-                    <li><i className="fa fa-check" aria-hidden="true" /> Air Conditioner </li>
-                    <li><i className="fa fa-check" aria-hidden="true" /> Mini Bar (with liquor) </li>
-                    <li><i className="fa fa-check" aria-hidden="true" /> Separate Bedroom </li>
-                    <li><i className="fa fa-check" aria-hidden="true" /> Living Room Space </li>
-                    <li><i className="fa fa-check" aria-hidden="true" /> Smoking Rooms Available </li>
-                    <li><i className="fa fa-check" aria-hidden="true" /> Internet </li>
-                    <li><i className="fa fa-check" aria-hidden="true" /> Transport to / from Hotel </li>
-                    <li><i className="fa fa-check" aria-hidden="true" /> Concierge </li>
-                    <li><i className="fa fa-check" aria-hidden="true" /> Rental Car Service Desk On Site </li>
-                    <li><i className="fa fa-check" aria-hidden="true" /> Room Service </li>
-                    <li><i className="fa fa-check" aria-hidden="true" /> Beauty Salon </li>
-                    <li><i className="fa fa-check" aria-hidden="true" /> Business Centre </li>
-                    <li><i className="fa fa-check" aria-hidden="true" /> Fitness Centre </li>
-                    <li><i className="fa fa-check" aria-hidden="true" /> Spa and Pool </li>
-                  </ul>
-                </div>
-                {/*====== TOUR LOCATION ==========*/}
+                
                 <div className="tour_head1 tout-map map-container">
                   <h3>Location</h3>
                   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253682.63269148426!2d3.1438742665509865!3d6.5480356985713195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8b2ae68280c1%3A0xdc9e87a367c3d9cb!2sLagos!5e0!3m2!1sen!2sng!4v1621004980308!5m2!1sen!2sng" width="600" height="450" style={{border:'0px'}} allowfullscreen="" loading="lazy"></iframe>
@@ -502,12 +468,12 @@ ft.innerHTML = '';
                 <div className="tour_right tour_offer">
                   <div className="band1"><img src="images/offer.png" alt="" /> </div>
                   <p>Special Offer</p>
-                  <h4 style={{fontSize:'22px'}}>N50,000<span className="n-td">
-                      <span className="n-td-1" style={{fontSize:'18px'}}>N80,000</span>
+                  <h4 style={{fontSize:'22px'}}>{currencyFormat(50000)}<span className="n-td">
+                      <span className="n-td-1" style={{fontSize:'18px'}}>{currencyFormat(80000)}</span>
                     </span>
-                  </h4> <a href="booking.html" className="link-btn">Book Now</a> </div>
+                  </h4> <a href="#" className="link-btn">Book Now</a> </div>
                 {/*====== TRIP INFORMATION ==========*/}
-                <div className="tour_right tour_incl tour-ri-com">
+                {/* <div className="tour_right tour_incl tour-ri-com">
                   <h3>Trip Information</h3>
                   <ul>
                     <li>Location : Enugu, Nigeria</li>
@@ -515,7 +481,7 @@ ft.innerHTML = '';
                     <li>Departure Date: Nov 21, 2017</li>
                     <li>Free Sightseeing &amp; Hotel</li>
                   </ul>
-                </div>
+                </div> */}
                 {/*====== PACKAGE SHARE ==========*/}
                 <div className="tour_right head_right tour_social tour-ri-com">
                   <h3>Share This Package</h3>
@@ -532,18 +498,18 @@ ft.innerHTML = '';
                   <h3>Help &amp; Support</h3>
                   <div className="tour_help_1">
                     <h4 className="tour_help_1_call">Call Us Now</h4>
-                    <h4><i className="fa fa-phone" aria-hidden="true" /> 10-800-123-000</h4> </div>
+                    <h4><i className="fa fa-phone" aria-hidden="true" />+234 804 756 8758</h4> </div>
                 </div>
                 {/*====== PUPULAR TOUR PACKAGES ==========*/}
                 <div className="tour_right tour_rela tour-ri-com">
                   <h3>Popular Packages</h3>
                   <div className="tour_rela_1"> <img src="images/related1.png" alt="" />
-                    <h4>Lagos 7Days / 6Nights</h4>
-                    <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text</p> <a href="#" className="link-btn">View this Package</a> </div>
+                    <h4>Goshen Hotels</h4>
+                    <p>Ughelli 7 Days / 6Nights</p> <a href="#" className="link-btn">View this Package</a> </div>
                   
                   <div className="tour_rela_1"> <img src="images/related3.png" alt="" />
-                    <h4>Abuja 14Days / 13Nights</h4>
-                    <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text</p> <a href="#" className="link-btn">View this Package</a> </div>
+                    <h4>Hotel Presidential</h4>
+                    <p>Abuja 14Days / 13Nights</p> <a href="#" className="link-btn">View this Package</a> </div>
                 </div>
               </div>
             </div>

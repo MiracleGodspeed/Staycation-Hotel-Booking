@@ -5,6 +5,8 @@ import logo2 from "../../Assets/images/logo-bg1.png";
 import logo3 from "../../Assets/images/logo-bg.png";
 import { Link } from "react-router-dom";
 import $ from "jquery";
+import {isTokenValid, validateToken} from "../../Utils/auth"
+
 import {
   Collapse,
   Navbar,
@@ -23,7 +25,7 @@ import {
 
 class Header extends Component {
   state = {
-    user_details: JSON.parse(localStorage.getItem("userData")),
+    user_details: JSON.parse(localStorage.getItem("staycation_user")),
   };
 
   logOutUser = () => {
@@ -34,7 +36,6 @@ class Header extends Component {
   componentDidMount() {
     init_jquery();
     $("#email-dd").on("click", function () {
-      // $(".nav-dd").toggle(200)
       $(".meno-ul").toggleClass("active");
     });
   }
@@ -96,7 +97,7 @@ class Header extends Component {
                        }}
                        className="badge badge-primary sofia"
                      >
-                       miracleoghenemado@gmail.com <i className="fa fa-angle-down"/>
+                       {this.state.user_details?.data?.email} <i className="fa fa-angle-down"/>
                      </DropdownToggle>
 
                      <DropdownMenu right style={{ padding: "9px" }}>
@@ -108,9 +109,9 @@ class Header extends Component {
                            marginBottom: "4px",
                          }}
                        >
-                         <a style={{ color: "black" }} className="sofia" href="/UserProfile">
+                         <Link style={{ color: "black" }} className="sofia" to={"/UserProfile"}>
                          <i className="fa fa-th-large" aria-hidden="true" /> Manage Bookings
-                         </a>
+                         </Link>
                        </DropdownItem>
 
                        <DropdownItem
@@ -121,9 +122,9 @@ class Header extends Component {
                            marginBottom: "10px",
                          }}
                        >
-                         <a style={{ color: "black" }} className="sofia" href="/UserProfile">
+                         <Link style={{ color: "black" }} className="sofia" to={"/UserProfile"}>
                          <i className="fa fa-user-o" aria-hidden="true" /> &nbsp; Manage Account
-                         </a>
+                         </Link>
                        </DropdownItem>
 
                        <DropdownItem className="col-md-12" style={{border:'none', background:'#FFF', marginBottom:'10px'}}>
@@ -138,7 +139,7 @@ class Header extends Component {
                   
                  </div> : 
                     <ul>
-                      <li>
+                      <li className="sofia">
                         <Link to={"/Login"}>Sign In</Link>
                       </li>
                       <li>
@@ -189,13 +190,13 @@ class Header extends Component {
                          fontSize: "14px",
                          listStyleType: "none",
                          textDecoration: "none",
-                         background:'rgb(44 139 145)',
+                         background:'#747b76',
                          padding:'8px'
 
                        }}
                        className="badge badge-primary sofia"
                      >
-                       miracleoghenemado@gmail.com <i className="fa fa-angle-down"/>
+                      {this.state.user_details?.data?.email} <i className="fa fa-angle-down"/>
                      </DropdownToggle>
 
                      <DropdownMenu right style={{ padding: "9px" }}>
@@ -207,9 +208,9 @@ class Header extends Component {
                            marginBottom: "10px",
                          }}
                        >
-                         <a style={{ color: "black" }} className="sofia" href="/UserProfile">
+                         <Link style={{ color: "black" }} className="sofia" to={"/UserProfile"}>
                          <i className="fa fa-th-large" aria-hidden="true" /> Manage Bookings
-                         </a>
+                         </Link>
                        </DropdownItem>
 
                        <DropdownItem
@@ -220,9 +221,9 @@ class Header extends Component {
                            marginBottom: "10px",
                          }}
                        >
-                         <a style={{ color: "black" }} className="sofia" href="/UserProfile">
+                         <Link style={{ color: "black" }} className="sofia" to={"/UserProfile"}>
                          <i className="fa fa-user-o" aria-hidden="true" /> &nbsp; Manage Account
-                         </a>
+                         </Link>
                        </DropdownItem>
 
                        <DropdownItem className="col-md-12" style={{border:'none', background:'#FFF', marginBottom:'10px'}}>
@@ -240,10 +241,10 @@ class Header extends Component {
                  :  <div className="ed-com-t1-right">
                      
                  <ul>
-                   <li><Link to={"/Login"}>Sign In</Link>
+                   <li ><Link style={{borderTopLeftRadius:'5px', borderBottomLeftRadius:'5px'}} className="sofia" to={"/Login"}>Sign In</Link>
                    </li>
                    <li>
-                   <Link to={"/Register"}>Sign Up</Link>
+                   <Link style={{borderTopRighttRadius:'5px', borderBottomRightRadius:'5px'}} className="sofia" to={"/Register"}>Sign Up</Link>
                    </li>
                  </ul>
                </div>

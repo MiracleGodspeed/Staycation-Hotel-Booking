@@ -7,6 +7,7 @@ import Login from "./Components/User/Login"
 import Register from "./Components/User/Register"
 import HotelDetails from "./Components/User/Hotel_Details"
 import UserProfile from "./Components/User/Profile"
+import EditProfile from "./Components/User/EditProfile"
 import UserCheckout from "./Components/User/UserCheckout"
 import Booking from "./Components/User/Booking"
 import AdminDashboard from "./Components/Admin/Dashboard"
@@ -34,24 +35,23 @@ export class App extends Component {
       <BrowserRouter>
         <Switch>
 
-          <Route exact path={"/"} component={Home} />
+            <Route exact path={"/"} component={Home} />
 
-          {/* <Route path={'/admin'} component={AdminLayout} /> */}
-          <Route path={"/Login"} component={Login} />
-          <Route path={"/Register"} component={Register} />
-          <Route path={"/Hotel_Details"} component={HotelDetails} />
-          <Route path={"/Booking"} component={Booking} />
-          <Route path={"/AdminDashboard"} component={AdminDashboard} />
-          <Route path={"/Side"} component={SideBar} />
-          <Route path={"/Dashboard2"} component={DashboardSecond} />
-          <Route path={"/UserProfile"} component={UserProfile} />
-          <Route path={"/AddHotel"} component={AddHotel} />
-          <Route path={"/Book"} component={UserCheckout} />
+            {/* <Route path={'/admin'} component={AdminLayout} /> */}
+            <Route path={"/Login"} component={Login} />
+            <Route path={"/Register"} component={Register} />
+            <Route path={"/Hotel_Details"} component={HotelDetails} />
+            <Route path={"/Booking"} component={Booking} />
+            <Route path={"/AdminDashboard"} component={AdminDashboard} />
+            <Route path={"/Side"} component={SideBar} />
+            <Route path={"/Dashboard2"} component={DashboardSecond} />
+            <Route path={"/UserProfile"} component={UserProfile} />
+            <Route path={"/AddHotel"} component={AddHotel} />
+            <Route path={"/Book"} component={UserCheckout} />
+            <Route path={"/EditProfile"} component={EditProfile} />
         </Switch>
-        {/* <PageLoader/> */}
       </BrowserRouter>
 
-      {/* <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> */}
 
       </div>
     );

@@ -32,6 +32,7 @@ import place3 from "../../Assets/images/place3.jpg"
 import place4 from "../../Assets/images/place4.jpg"
 import Header from "../../Layouts/User/Header"
 import Footer from "../../Layouts/User/Footer"
+import {HoteList} from "../../Helpers/DataStore"
 import {
   Button,
   Modal,
@@ -93,23 +94,23 @@ class Home extends Component{
                     </div>
                     <div className="input-field">
                       {/* <input type="submit" defaultValue="search" className="link-btn" /> */}
-                      <button className="link-btn btn-large btn-large-custom">Search</button>
+                      <button className="btn btn-large-custom sofia">Search</button>
 
                        </div>
                   </form>
                   <div className="tourz-hom-ser">
                     <ul>
                       <li>
-                        <a href="booking-tour-package.html" className="waves-effect waves-light tourz-pop-ser-btn wow fadeInUp" data-wow-duration="0.5s"><img src={icon1} alt="" /> LAGOS</a>
+                        <a href="#" className="waves-effect waves-light tourz-pop-ser-btn wow fadeInUp" data-wow-duration="0.5s"><img src={icon1} alt="" /> LAGOS</a>
                       </li>
                       <li>
-                        <a href="booking-flight.html" className="waves-effect waves-light tourz-pop-ser-btn wow fadeInUp" data-wow-duration="1s"><img src={icon2} alt="" /> ABUJA</a>
+                        <a href="#" className="waves-effect waves-light tourz-pop-ser-btn wow fadeInUp" data-wow-duration="1s"><img src={icon2} alt="" /> ABUJA</a>
                       </li>
                       <li>
-                        <a href="booking-car-rentals.html" className="waves-effect waves-light tourz-pop-ser-btn wow fadeInUp" data-wow-duration="1.5s"><img src={icon3} alt="" /> ASABA</a>
+                        <a href="#" className="waves-effect waves-light tourz-pop-ser-btn wow fadeInUp" data-wow-duration="1.5s"><img src={icon3} alt="" /> ASABA</a>
                       </li>
                       <li>
-                        <a href="booking-hotel.html" className="waves-effect waves-light tourz-pop-ser-btn wow fadeInUp" data-wow-duration="2s"><img src={icon4} alt="" />ENUGU</a>
+                        <a href="#" className="waves-effect waves-light tourz-pop-ser-btn wow fadeInUp" data-wow-duration="2s"><img src={icon4} alt="" />ENUGU</a>
                       </li>
                     </ul>
                   </div>
@@ -124,7 +125,7 @@ class Home extends Component{
             <div className="container">
               {/* TITLE & DESCRIPTION */}
               <div className="spe-title">
-                <h2>Top <span>Hotel Deals</span></h2>
+                <h2>Top <span className="cation-text">Hotel Deals</span></h2>
                 <div className="title-line">
                   <div className="tl-1" />
                   <div className="tl-2" />
@@ -134,167 +135,44 @@ class Home extends Component{
               </div>
               <div>
                 {/* TOUR PLACE 1 */}
-                <div className="col-md-4 col-sm-6 col-xs-12 b_packages wow slideInUp" data-wow-duration="0.5s">
-                  {/* OFFER BRAND */}
-                  <div className="band"> <img src={band} alt="" /> </div>
-                  {/* IMAGE */}
-                  <div className="v_place_img"> <img src={t5} alt="Tour Booking" title="Tour Booking" /> </div>
-                  {/* TOUR TITLE & ICONS */}
-                  <div className="b_pack rows">
-                    {/* TOUR TITLE */}
-                    <div className="col-md-12 col-sm-12">
-                      <h4><a href="/Hotel_Details">Pine Crest Hotels<span className="v_pl_name">(Lekki)</span></a></h4>
+                {HoteList && HoteList.map((i, h) => {
+                  return(
+                    <div className="col-md-4 col-sm-6 col-xs-12 b_packages wow slideInUp" data-wow-duration="0.5s">
+                    {/* OFFER BRAND */}
+                    <div className="band"> <img src={band} alt="" /> </div>
+                    {/* IMAGE */}
+                    <div className="v_place_img"> <img src={i.DisplayImage} alt="Tour Booking" title="Tour Booking" /> </div>
+                    {/* TOUR TITLE & ICONS */}
+                    <div className="b_pack rows">
+                      {/* TOUR TITLE */}
+                      <div className="col-md-12 col-sm-12">
+                        <h4><Link to={{pathname:"/Hotel_Details", state:{data:i}}} id={i.id}>{i.Name}<span className="v_pl_name">{i.City}</span></Link></h4>
+                      </div>
+                      {/* TOUR ICONS */}
+                      {/* <div className="col-md-4 col-sm-4 pack_icon">
+                        <ul>
+                          <li>
+                            <a href="#"><img src={clock} alt="Date" title="Tour Timing" /> </a>
+                          </li>
+                          <li>
+                            <a href="#"><img src={info} alt="Details" title="View more details" /> </a>
+                          </li>
+                          <li>
+                            <a href="#"><img src={price} alt="Price" title="Price" /> </a>
+                          </li>
+                          <li>
+                            <a href="#"><img src={map} alt="Location" title="Location" /> </a>
+                          </li>
+                        </ul>
+                      </div> */}
                     </div>
-                    {/* TOUR ICONS */}
-                    {/* <div className="col-md-4 col-sm-4 pack_icon">
-                      <ul>
-                        <li>
-                          <a href="#"><img src={clock} alt="Date" title="Tour Timing" /> </a>
-                        </li>
-                        <li>
-                          <a href="#"><img src={info} alt="Details" title="View more details" /> </a>
-                        </li>
-                        <li>
-                          <a href="#"><img src={price} alt="Price" title="Price" /> </a>
-                        </li>
-                        <li>
-                          <a href="#"><img src={map} alt="Location" title="Location" /> </a>
-                        </li>
-                      </ul>
-                    </div> */}
                   </div>
-                </div>
-                {/* TOUR PLACE 2 */}
-                <div className="col-md-4 col-sm-6 col-xs-12 b_packages wow fadeInUp" data-wow-duration="0.7s">
-                  {/* OFFER BRAND */}
-                  <div className="band"> <img src={band1} alt="" /> </div>
-                  {/* IMAGE */}
-                  <div className="v_place_img"> <img src={t1} alt="Tour Booking" title="Tour Booking" /> </div>
-                  {/* TOUR TITLE & ICONS */}
-                  <div className="b_pack rows">
-                    {/* TOUR TITLE */}
-                    <div className="col-md-12 col-sm-12">
-                      <h4><a href="/Hotel_Details">BON Sunshine Hotels<span className="v_pl_name">(Enugu)</span></a></h4>
-                    </div>
-                    {/* TOUR ICONS */}
-                    {/* <div className="col-md-4 col-sm-4 pack_icon">
-                    <ul>
-                        <li>
-                          <a href="#"><img src={clock} alt="Date" title="Tour Timing" /> </a>
-                        </li>
-                        <li>
-                          <a href="#"><img src={info} alt="Details" title="View more details" /> </a>
-                        </li>
-                        <li>
-                          <a href="#"><img src={price} alt="Price" title="Price" /> </a>
-                        </li>
-                        <li>
-                          <a href="#"><img src={map} alt="Location" title="Location" /> </a>
-                        </li>
-                      </ul>
-                    </div> */}
-                  </div>
-                </div>
-                {/* TOUR PLACE 3 */}
-                <div className="col-md-4 col-sm-6 col-xs-12 b_packages wow fadeInUp" data-wow-duration="0.9s">
-                  <div className="v_place_img"><img src={t2} alt="Tour Booking" title="Tour Booking" /> </div>
-                  <div className="b_pack rows">
-                    <div className="col-md-12 col-sm-12">
-                      <h4><Link to={"/Hotel_Details"}>Top Rank Luxury Palace<span className="v_pl_name">(Asaba)</span></Link></h4>
-                    </div>
-                    {/* <div className="col-md-4 col-sm-4 pack_icon">
-                    <ul>
-                        <li>
-                          <a href="#"><img src={clock} alt="Date" title="Tour Timing" /> </a>
-                        </li>
-                        <li>
-                          <a href="#"><img src={info} alt="Details" title="View more details" /> </a>
-                        </li>
-                        <li>
-                          <a href="#"><img src={price} alt="Price" title="Price" /> </a>
-                        </li>
-                        <li>
-                          <a href="#"><img src={map} alt="Location" title="Location" /> </a>
-                        </li>
-                      </ul>
-                    </div> */}
-                  </div>
-                </div>
-                {/* TOUR PLACE 4 */}
-                <div className="col-md-4 col-sm-6 col-xs-12 b_packages wow fadeInUp" data-wow-duration="1.1s">
-                  <div className="v_place_img"><img src={t3} alt="Tour Booking" title="Tour Booking" /> </div>
-                  <div className="b_pack rows">
-                    <div className="col-md-12 col-sm-12">
-                      <h4><a href="tour-details.html">Coal City Hotel<span className="v_pl_name">(GRA, Enugu)</span></a></h4>
-                    </div>
-                    {/* <div className="col-md-4 col-sm-4 pack_icon">
-                    <ul>
-                        <li>
-                          <a href="#"><img src={clock} alt="Date" title="Tour Timing" /> </a>
-                        </li>
-                        <li>
-                          <a href="#"><img src={info} alt="Details" title="View more details" /> </a>
-                        </li>
-                        <li>
-                          <a href="#"><img src={price} alt="Price" title="Price" /> </a>
-                        </li>
-                        <li>
-                          <a href="#"><img src={map} alt="Location" title="Location" /> </a>
-                        </li>
-                      </ul>
-                    </div> */}
-                  </div>
-                </div>
-                {/* TOUR PLACE 5 */}
-                <div className="col-md-4 col-sm-6 col-xs-12 b_packages wow fadeInUp" data-wow-duration="1.3s">
-                  <div className="v_place_img"><img src={t4} alt="Tour Booking" title="Tour Booking" /> </div>
-                  <div className="b_pack rows">
-                    <div className="col-md-12 col-sm-12">
-                      <h4><a href="tour-details.html">Brix Luxury<span className="v_pl_name">(Owerri)</span></a></h4>
-                    </div>
-                    {/* <div className="col-md-4 col-sm-4 pack_icon">
-                    <ul>
-                        <li>
-                          <a href="#"><img src={clock} alt="Date" title="Tour Timing" /> </a>
-                        </li>
-                        <li>
-                          <a href="#"><img src={info} alt="Details" title="View more details" /> </a>
-                        </li>
-                        <li>
-                          <a href="#"><img src={price} alt="Price" title="Price" /> </a>
-                        </li>
-                        <li>
-                          <a href="#"><img src={map} alt="Location" title="Location" /> </a>
-                        </li>
-                      </ul>
-                    </div> */}
-                  </div>
-                </div>
-                {/* TOUR PLACE 6 */}
-                <div className="col-md-4 col-sm-6 col-xs-12 b_packages wow fadeInUp" data-wow-duration="1.5s">
-                  <div className="v_place_img"><img src={t6} alt="Tour Booking" title="Tour Booking" /> </div>
-                  <div className="b_pack rows">
-                    <div className="col-md-12 col-sm-12">
-                      <h4><a href="tour-details.html">Park View<span className="v_pl_name">(Uyo, Akwa-Ibom)</span></a></h4>
-                    </div>
-                    {/* <div className="col-md-4 col-sm-4 pack_icon">
-                    <ul>
-                        <li>
-                          <a href="#"><img src={clock} alt="Date" title="Tour Timing" /> </a>
-                        </li>
-                        <li>
-                          <a href="#"><img src={info} alt="Details" title="View more details" /> </a>
-                        </li>
-                        <li>
-                          <a href="#"><img src={price} alt="Price" title="Price" /> </a>
-                        </li>
-                        <li>
-                          <a href="#"><img src={map} alt="Location" title="Location" /> </a>
-                        </li>
-                      </ul>
-                    </div> */}
-                  </div>
-                </div>
+                 
+               
+                  )
+                })}
+              
+                
               </div>
             </div>
           </div>
@@ -305,7 +183,7 @@ class Home extends Component{
             <div className="container">
               {/* TITLE & DESCRIPTION */}
               <div className="spe-title">
-                <h2>Popular <span>Cities</span> </h2>
+                <h2>Popular <span className="cation-text">Cities</span> </h2>
                 <div className="title-line">
                   <div className="tl-1" />
                   <div className="tl-2" />
@@ -315,7 +193,7 @@ class Home extends Component{
               </div>
               {/* CITY */}
               <div className="col-md-6">
-                <a href="tour-details.html">
+                <a href="#">
                   <div className="tour-mig-like-com">
                     <div className="tour-mig-lc-img"> <img src={home} alt="" /> </div>
                     <div className="tour-mig-lc-con">
@@ -326,7 +204,7 @@ class Home extends Component{
                 </a>
               </div>
               <div className="col-md-3">
-                <a href="tour-details.html">
+                <a href="#">
                   <div className="tour-mig-like-com">
                     <div className="tour-mig-lc-img"> <img src={home3} alt="" /> </div>
                     <div className="tour-mig-lc-con tour-mig-lc-con2">
@@ -337,7 +215,7 @@ class Home extends Component{
                 </a>
               </div>
               <div className="col-md-3">
-                <a href="tour-details.html">
+                <a href="#">
                   <div className="tour-mig-like-com">
                     <div className="tour-mig-lc-img"> <img src={home2} alt="" /> </div>
                     <div className="tour-mig-lc-con tour-mig-lc-con2">
@@ -348,7 +226,7 @@ class Home extends Component{
                 </a>
               </div>
               <div className="col-md-3">
-                <a href="tour-details.html">
+                <a href="#">
                   <div className="tour-mig-like-com">
                     <div className="tour-mig-lc-img"> <img src={home1} alt="" /> </div>
                     <div className="tour-mig-lc-con tour-mig-lc-con2">
@@ -359,7 +237,7 @@ class Home extends Component{
                 </a>
               </div>
               <div className="col-md-3">
-                <a href="tour-details.html">
+                <a href="#">
                   <div className="tour-mig-like-com">
                     <div className="tour-mig-lc-img"> <img src={home4} alt="" /> </div>
                     <div className="tour-mig-lc-con tour-mig-lc-con2">
@@ -378,7 +256,7 @@ class Home extends Component{
             <div className="container">
               {/* TITLE & DESCRIPTION */}
               <div className="spe-title">
-                <h2>Hotels <span>booking open now! </span> </h2>
+                <h2>Hotels <span className="cation-text">booking open now! </span> </h2>
                 <div className="title-line">
                   <div className="tl-1" />
                   <div className="tl-2" />
@@ -421,7 +299,7 @@ class Home extends Component{
                       <div className="hom-hot-av-tic"> Available Tickets: 520 </div> <img src={h2} alt="" /> </div>
                     <div className="to-ho-hotel-con-23">
                       <div className="to-ho-hotel-con-2">
-                        <a href="hotel-details.html">
+                        <a href="#">
                           <h4>Adebola Grand Resorts</h4>
                         </a>
                       </div>
@@ -430,7 +308,7 @@ class Home extends Component{
                           <li>City: illunois,united states
                             <div className="dir-rat-star ho-hot-rat-star"> Rating: <i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" /> </div>
                           </li>
-                          <li><span className="ho-hot-pri-dis">N40,000</span><span className="ho-hot-pri">N54,000</span> </li>
+                          <li><span className="ho-hot-pri-dis cation-text">N40,000</span><span className="ho-hot-pri cation-text">N54,000</span> </li>
                         </ul>
                       </div>
                     </div>
@@ -444,7 +322,7 @@ class Home extends Component{
                       <div className="hom-hot-av-tic"> Available Tickets: 92 </div> <img src={h3} alt="" /> </div>
                     <div className="to-ho-hotel-con-23">
                       <div className="to-ho-hotel-con-2">
-                        <a href="hotel-details.html">
+                        <a href="#">
                           <h4>Keep Grand Hotels</h4>
                         </a>
                       </div>
@@ -453,7 +331,7 @@ class Home extends Component{
                           <li>City: illunois,united states
                             <div className="dir-rat-star ho-hot-rat-star"> Rating: <i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star" aria-hidden="true" /><i className="fa fa-star-o" aria-hidden="true" /> </div>
                           </li>
-                          <li><span className="ho-hot-pri-dis">N60,000</span><span className="ho-hot-pri">N38,000</span> </li>
+                          <li><span className="ho-hot-pri-dis cation-text">N60,000</span><span className="ho-hot-pri cation-text">N38,000</span> </li>
                         </ul>
                       </div>
                     </div>
@@ -506,7 +384,7 @@ class Home extends Component{
             <div className="container events events-1" id="inner-page-title">
               {/* TITLE & DESCRIPTION */}
               <div className="spe-title">
-                <h2>Top <span>Events</span> in this month</h2>
+                <h2>Top <span className="cation-text">Events</span> in this month</h2>
                 <div className="title-line">
                   <div className="tl-1" />
                   <div className="tl-2" />
@@ -527,84 +405,24 @@ class Home extends Component{
                   </tr>
                   <tr>
                     <td>1</td>
-                    <td><img src="images/iplace-1.jpg" alt="" /><a href="hotels-list.html" className="events-title">Taj Mahal,Agra, India</a> </td>
+                    <td><img src="images/iplace-1.jpg" alt="" /><a href="hotels-list.html" className="events-title">Burna Boy Invasion, Lagos</a> </td>
                     <td className="e_h1">16.12.2016</td>
                     <td className="e_h1">10.00 PM</td>
-                    <td className="e_h1">Australia</td>
-                    <td><a href="booking.html" className="link-btn">Book Now</a> </td>
+                    <td className="e_h1">Quilox</td>
+                    <td><a href="#" className="link-btn">Book Now</a> </td>
                   </tr>
                   <tr>
                     <td>2</td>
-                    <td><img src="images/iplace-2.jpg" alt="" /><a href="hotels-list.html" className="events-title">Salesforce Summer, Dubai</a> </td>
+                    <td><img src="images/iplace-2.jpg" alt="" /><a href="hotels-list.html" className="events-title">BET Awards 2021, Dubai</a> </td>
                     <td className="e_h1">16.12.2016</td>
                     <td className="e_h1">10.00 PM</td>
                     <td className="e_h1">Dubai</td>
-                    <td><a href="booking.html" className="link-btn">Book Now</a> </td>
+                    <td><a href="#" className="link-btn">Book Now</a> </td>
                   </tr>
-                  <tr>
-                    <td>3</td>
-                    <td><img src="images/iplace-3.jpg" alt="" /><a href="hotels-list.html" className="events-title">God Towers, TOKYO, JAPAN</a> </td>
-                    <td className="e_h1">16.12.2016</td>
-                    <td className="e_h1">10.00 PM</td>
-                    <td className="e_h1">JAPAN</td>
-                    <td><a href="booking.html" className="link-btn">Book Now</a> </td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td><img src="images/iplace-4.jpg" alt="" /><a href="hotels-list.html" className="events-title">TOUR DE ROMANDIE, Switzerland</a> </td>
-                    <td className="e_h1">16.12.2016</td>
-                    <td className="e_h1">10.00 PM</td>
-                    <td className="e_h1">Switzerland</td>
-                    <td><a href="booking.html" className="link-btn">Book Now</a> </td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td><img src="images/iplace-5.jpg" alt="" /><a href="hotels-list.html" className="events-title">TOUR DE POLOGNE, Poland</a> </td>
-                    <td className="e_h1">16.12.2016</td>
-                    <td className="e_h1">10.00 PM</td>
-                    <td className="e_h1">Poland</td>
-                    <td><a href="booking.html" className="link-btn">Book Now</a> </td>
-                  </tr>
-                  <tr>
-                    <td>6</td>
-                    <td><img src="images/iplace-6.jpg" alt="" /><a href="hotels-list.html" className="events-title">Future of Marketing,Sydney, Australia</a> </td>
-                    <td className="e_h1">16.12.2016</td>
-                    <td className="e_h1">10.00 PM</td>
-                    <td className="e_h1">Australia</td>
-                    <td><a href="booking.html" className="link-btn">Book Now</a> </td>
-                  </tr>
-                  <tr>
-                    <td>7</td>
-                    <td><img src="images/iplace-7.jpg" alt="" /><a href="hotels-list.html" className="events-title">Eiffel Tower, Paris</a> </td>
-                    <td className="e_h1">16.12.2016</td>
-                    <td className="e_h1">10.00 PM</td>
-                    <td className="e_h1">France</td>
-                    <td><a href="booking.html" className="link-btn">Book Now</a> </td>
-                  </tr>
-                  <tr>
-                    <td>8</td>
-                    <td><img src="images/iplace-8.jpg" alt="" /><a href="hotels-list.html" className="events-title">PARIS - ROUBAIX, England</a> </td>
-                    <td className="e_h1">16.12.2016</td>
-                    <td className="e_h1">10.00 PM</td>
-                    <td className="e_h1">England</td>
-                    <td><a href="booking.html" className="link-btn">Book Now</a> </td>
-                  </tr>
-                  <tr>
-                    <td>9</td>
-                    <td><img src="images/iplace-9.jpg" alt="" /><a href="hotels-list.html" className="events-title">Dubai Beach Resort, Dubai</a> </td>
-                    <td className="e_h1">16.12.2016</td>
-                    <td className="e_h1">10.00 PM</td>
-                    <td className="e_h1">Dubai</td>
-                    <td><a href="booking.html" className="link-btn">Book Now</a> </td>
-                  </tr>
-                  <tr>
-                    <td>10</td>
-                    <td><img src="images/iplace-4.jpg" alt="" /><a href="hotels-list.html" className="events-title">TOUR DE POLOGNE, Poland</a> </td>
-                    <td className="e_h1">16.12.2016</td>
-                    <td className="e_h1">10.00 PM</td>
-                    <td className="e_h1">Poland</td>
-                    <td><a href="booking.html" className="link-btn">Book Now</a> </td>
-                  </tr>
+                 
+               
+                 
+                 
                 </tbody>
               </table>
             </div>
@@ -616,7 +434,7 @@ class Home extends Component{
             <div className="pla1 p-home container">
               {/* TITLE & DESCRIPTION */}
               <div className="spe-title spe-title-1">
-                <h2>Top <span>Sight Seeing</span> in this month</h2>
+                <h2>Top <span className="cation-text">Sight Seeing</span> in this month</h2>
                 <div className="title-line">
                   <div className="tl-1" />
                   <div className="tl-2" />
@@ -630,14 +448,14 @@ class Home extends Component{
                   <div className="col-md-6 col-sm-12 col-xs-12"> <img src={place2} alt="" /> </div>
                   <div className="col-md-6 col-sm-12 col-xs-12">
                     <h3><span>Honeymoon Package</span> 7 Days / 6 Nights</h3>
-                    <p>lorem ipsum simplelorem ipsum simplelorem ipsum simplelorem ipsum simple</p> <a href="tour-details.html" className="link-btn">more info</a> </div>
+                    <p>lorem ipsum simplelorem ipsum simplelorem ipsum simplelorem ipsum simple</p> <a href="#" className="link-btn">more info</a> </div>
                 </div>
                 {/* POPULAR PLACES 2 */}
                 <div className="col-md-6 col-sm-6 col-xs-12 place">
                   <div className="col-md-6 col-sm-12 col-xs-12"> <img src={place1} alt="" /> </div>
                   <div className="col-md-6 col-sm-12 col-xs-12">
                     <h3><span>Family package</span> 14 Days / 13 Nights</h3>
-                    <p>lorem ipsum simplelorem ipsum simplelorem ipsum simplelorem ipsum simple</p> <a href="tour-details.html" className="link-btn">more info</a> </div>
+                    <p>lorem ipsum simplelorem ipsum simplelorem ipsum simplelorem ipsum simple</p> <a href="#" className="link-btn">more info</a> </div>
                 </div>
               </div>
               <div className="popu-places-home">
@@ -646,203 +464,20 @@ class Home extends Component{
                   <div className="col-md-6 col-sm-12 col-xs-12"> <img src={place3} alt="" /> </div>
                   <div className="col-md-6 col-sm-12 col-xs-12">
                     <h3><span>Weekend Package </span> 3 Days / 2 Nights</h3>
-                    <p>lorem ipsum simplelorem ipsum simplelorem ipsum simplelorem ipsum simple</p> <a href="tour-details.html" className="link-btn">more info</a> </div>
+                    <p>lorem ipsum simplelorem ipsum simplelorem ipsum simplelorem ipsum simple</p> <a href="#" className="link-btn">more info</a> </div>
                 </div>
                 {/* POPULAR PLACES 4 */}
                 <div className="col-md-6 col-sm-6 col-xs-12 place">
                   <div className="col-md-6 col-sm-12 col-xs-12"> <img src={place4} alt="" /> </div>
                   <div className="col-md-6 col-sm-12 col-xs-12">
                     <h3><span>Group Package</span> 10 Days / 9 Nights</h3>
-                    <p>lorem ipsum simplelorem ipsum simplelorem ipsum simplelorem ipsum simple</p> <a href="tour-details.html" className="link-btn">more info</a> </div>
+                    <p>lorem ipsum simplelorem ipsum simplelorem ipsum simplelorem ipsum simple</p> <a href="#" className="link-btn">more info</a> </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
-        {/*====== REQUEST A QUOTE ==========*/}
-        <section>
-          <div className="ho-popu tb-space pad-bot-redu">
-            <div className="rows container">
-              {/* TITLE & DESCRIPTION */}
-              <div className="spe-title">
-                <h2>Top <span>Branding</span> for this month</h2>
-                <div className="title-line">
-                  <div className="tl-1" />
-                  <div className="tl-2" />
-                  <div className="tl-3" />
-                </div>
-                <p>World's leading tour and travels Booking website,Over 30,000 packages worldwide. Book travel packages and enjoy your holidays with distinctive experience</p>
-              </div>
-              <div className="ho-popu-bod">
-                <div className="col-md-4">
-                  <div className="hot-page2-hom-pre-head">
-                    <h4>Top Branding <span>Hotels</span></h4>
-                  </div>
-                  <div className="hot-page2-hom-pre">
-                    <ul>
-                      {/*LISTINGS*/}
-                      <li>
-                        <a href="hotels-list.html">
-                          <div className="hot-page2-hom-pre-1"> <img src="images/hotels/1.jpg" alt="" /> </div>
-                          <div className="hot-page2-hom-pre-2">
-                            <h5>Taaj Club House</h5> <span>City: illunois, United States</span> </div>
-                          <div className="hot-page2-hom-pre-3"> <span>4.5</span> </div>
-                        </a>
-                      </li>
-                      {/*LISTINGS*/}
-                      <li>
-                        <a href="hotels-list.html">
-                          <div className="hot-page2-hom-pre-1"> <img src="images/hotels/2.jpg" alt="" /> </div>
-                          <div className="hot-page2-hom-pre-2">
-                            <h5>Universal luxury Grand Hotel</h5> <span>City: Rio,Brazil</span> </div>
-                          <div className="hot-page2-hom-pre-3"> <span>4.2</span> </div>
-                        </a>
-                      </li>
-                      {/*LISTINGS*/}
-                      <li>
-                        <a href="hotels-list.html">
-                          <div className="hot-page2-hom-pre-1"> <img src="images/hotels/3.jpg" alt="" /> </div>
-                          <div className="hot-page2-hom-pre-2">
-                            <h5>Barcelona Grand Pales</h5> <span>City: Chennai,India</span> </div>
-                          <div className="hot-page2-hom-pre-3"> <span>5.0</span> </div>
-                        </a>
-                      </li>
-                      {/*LISTINGS*/}
-                      <li>
-                        <a href="hotels-list.html">
-                          <div className="hot-page2-hom-pre-1"> <img src="images/hotels/4.jpg" alt="" /> </div>
-                          <div className="hot-page2-hom-pre-2">
-                            <h5>Lake Palace view Hotel</h5> <span>City: Beijing,China</span> </div>
-                          <div className="hot-page2-hom-pre-3"> <span>2.5</span> </div>
-                        </a>
-                      </li>
-                      {/*LISTINGS*/}
-                      <li>
-                        <a href="hotels-list.html">
-                          <div className="hot-page2-hom-pre-1"> <img src="images/hotels/8.jpg" alt="" /> </div>
-                          <div className="hot-page2-hom-pre-2">
-                            <h5>First Class Grandd Hotel</h5> <span>City: Berlin,Germany</span> </div>
-                          <div className="hot-page2-hom-pre-3"> <span>4.0</span> </div>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="hot-page2-hom-pre-head">
-                    <h4>Top Branding <span>Packages</span></h4>
-                  </div>
-                  <div className="hot-page2-hom-pre">
-                    <ul>
-                      {/*LISTINGS*/}
-                      <li>
-                        <a href="hotels-list.html">
-                          <div className="hot-page2-hom-pre-1"> <img src="images/trends/1.jpg" alt="" /> </div>
-                          <div className="hot-page2-hom-pre-2">
-                            <h5>Family Package Luxury</h5> <span>Duration: 7 Days and 6 Nights</span> </div>
-                          <div className="hot-page2-hom-pre-3"> <span>4.1</span> </div>
-                        </a>
-                      </li>
-                      {/*LISTINGS*/}
-                      <li>
-                        <a href="hotels-list.html">
-                          <div className="hot-page2-hom-pre-1"> <img src="images/trends/2.jpg" alt="" /> </div>
-                          <div className="hot-page2-hom-pre-2">
-                            <h5>Honeymoon Package Luxury</h5> <span>Duration: 14 Days and 13 Nights</span> </div>
-                          <div className="hot-page2-hom-pre-3"> <span>4.4</span> </div>
-                        </a>
-                      </li>
-                      {/*LISTINGS*/}
-                      <li>
-                        <a href="hotels-list.html">
-                          <div className="hot-page2-hom-pre-1"> <img src="images/trends/3.jpg" alt="" /> </div>
-                          <div className="hot-page2-hom-pre-2">
-                            <h5>Group Package Luxury</h5> <span>Duration: 28 Days and 29 Nights</span> </div>
-                          <div className="hot-page2-hom-pre-3"> <span>3.0</span> </div>
-                        </a>
-                      </li>
-                      {/*LISTINGS*/}
-                      <li>
-                        <a href="hotels-list.html">
-                          <div className="hot-page2-hom-pre-1"> <img src="images/trends/4.jpg" alt="" /> </div>
-                          <div className="hot-page2-hom-pre-2">
-                            <h5>Regular Package Luxury</h5> <span>Duration: 12 Days and 11 Nights</span> </div>
-                          <div className="hot-page2-hom-pre-3"> <span>3.5</span> </div>
-                        </a>
-                      </li>
-                      {/*LISTINGS*/}
-                      <li>
-                        <a href="hotels-list.html">
-                          <div className="hot-page2-hom-pre-1"> <img src="images/trends/1.jpg" alt="" /> </div>
-                          <div className="hot-page2-hom-pre-2">
-                            <h5>Custom Package Luxury</h5> <span>Duration: 10 Days and 10 Nights</span> </div>
-                          <div className="hot-page2-hom-pre-3"> <span>5.0</span> </div>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="hot-page2-hom-pre-head">
-                    <h4>Top Branding <span>Reviewers</span></h4>
-                  </div>
-                  <div className="hot-page2-hom-pre">
-                    <ul>
-                      {/*LISTINGS*/}
-                      <li>
-                        <a href="hotels-list.html">
-                          <div className="hot-page2-hom-pre-1"> <img src="images/reviewer/1.jpg" alt="" /> </div>
-                          <div className="hot-page2-hom-pre-2">
-                            <h5>Christopher</h5> <span>No of Reviews: 620, City: illunois</span> </div>
-                          <div className="hot-page2-hom-pre-3"> <i className="fa fa-hand-o-right" aria-hidden="true" /> </div>
-                        </a>
-                      </li>
-                      {/*LISTINGS*/}
-                      <li>
-                        <a href="hotels-list.html">
-                          <div className="hot-page2-hom-pre-1"> <img src="images/reviewer/2.png" alt="" /> </div>
-                          <div className="hot-page2-hom-pre-2">
-                            <h5>Matthew</h5> <span>No of Reviews: 48, City: Rio</span> </div>
-                          <div className="hot-page2-hom-pre-3"> <i className="fa fa-hand-o-right" aria-hidden="true" /> </div>
-                        </a>
-                      </li>
-                      {/*LISTINGS*/}
-                      <li>
-                        <a href="hotels-list.html">
-                          <div className="hot-page2-hom-pre-1"> <img src="images/reviewer/3.jpg" alt="" /> </div>
-                          <div className="hot-page2-hom-pre-2">
-                            <h5>Stephanie</h5> <span>No of Reviews: 560, City: Chennai</span> </div>
-                          <div className="hot-page2-hom-pre-3"> <i className="fa fa-hand-o-right" aria-hidden="true" /> </div>
-                        </a>
-                      </li>
-                      {/*LISTINGS*/}
-                      <li>
-                        <a href="hotels-list.html">
-                          <div className="hot-page2-hom-pre-1"> <img src="images/reviewer/4.jpg" alt="" /> </div>
-                          <div className="hot-page2-hom-pre-2">
-                            <h5>Robert</h5> <span>No of Reviews: 920, City: Beijing</span> </div>
-                          <div className="hot-page2-hom-pre-3"> <i className="fa fa-hand-o-right" aria-hidden="true" /> </div>
-                        </a>
-                      </li>
-                      {/*LISTINGS*/}
-                      <li>
-                        <a href="hotels-list.html">
-                          <div className="hot-page2-hom-pre-1"> <img src="images/reviewer/5.jpg" alt="" /> </div>
-                          <div className="hot-page2-hom-pre-2">
-                            <h5>Danielle</h5> <span>No of Reviews: 768, City: Berlin</span> </div>
-                          <div className="hot-page2-hom-pre-3"> <i className="fa fa-hand-o-right" aria-hidden="true" /> </div>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-        {/*====== REQUEST A QUOTE ==========*/}
-       
-        {/*====== REQUEST A QUOTE ==========*/}
+    
        
 <Footer/>
 

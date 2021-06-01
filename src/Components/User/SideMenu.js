@@ -34,14 +34,14 @@ class SideMenu extends Component {
                 <li><span>18</span> Favourites</li>
               </ul>
             </div>
-            <div className="db-l-2">
-              <ul>
+            <div className="db-l-2 sofia s-l-u">
+              <ul className="sofia">
                 <li>
-                  <a href="#"><img src={icon11} alt="" /> All Bookings</a>
+                  <Link to={"/UserProfile"}><img src={icon11} alt="" /> Dashboard</Link>
                 </li>
-                <li>
+                {/* <li>
                   <a href="#"><img src={icon12} alt="" /> Travel Bookings</a>
-                </li>
+                </li> */}
                 <li>
                   <a href="#"><img src={icon13} alt="" /> Hotel Bookings</a>
                 </li>
@@ -49,13 +49,13 @@ class SideMenu extends Component {
                   <a href="#"><img src={icon14} alt="" /> Event Bookings</a>
                 </li>
                 <li>
-                  <a href="#"><img src={icon16} alt="" /> My Profile</a>
+                  <Link to={"/EditProfile"}><img src={icon16} alt="" /> Edit Profile</Link>
                 </li>
                 <li>
                   <a href="#"><img src={icon19} alt="" /> Payments</a>
                 </li>
                 <li>
-                  <a href="#"><img src={icon17} alt="" /> Claim &amp; Refund</a>
+                  <a href="#"><img src={icon17} alt="" /> Password &amp; Security</a>
                 </li>
               </ul>
             </div>

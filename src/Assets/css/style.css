@@ -57,10 +57,12 @@
      -ms-transition: all 0.5s ease;
      -o-transition: all 0.5s ease;
      background: #636363;
-     background: linear-gradient(to bottom,#f4364f,#dc2039)!important;
+     /* background: linear-gradient(to bottom,#f4364f,#dc2039)!important; */
+     background: #0962e3;
+     
 }
  .link-btn:hover {
-     background-color: #e23464;
+     background-color: #696767;
      transition: all 0.5s ease;
      -webkit-transition: all 0.5s ease;
      -moz-transition: all 0.5s ease;
@@ -7404,11 +7406,13 @@ input[type="email"]{
      font-size: 12px;
 }
  .ed-com-t1-right ul li:nth-child(1) a{
-     background: #f4364f;
-     background: linear-gradient(to bottom,#f4364f,#dc2039);
+    background: #0962e3!important;
+     /* background: #f4364f; */
+     /* background: linear-gradient(to bottom,#f4364f,#dc2039); */
+     
 }
  .ed-com-t1-right ul li:nth-child(2) a{
-     background: #2d5d73;
+     background: #607f6f;
 }
 /*-------------------------------------------------*/
 /* = 6.HOME PAGE: TAB AND ENQUIRY 
