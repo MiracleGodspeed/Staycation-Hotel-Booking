@@ -51,7 +51,7 @@ openCart = () => {
   }
 
   render() {
-    const {resolveCart, username, role, cart, item, cart_count, cart_username} = this.context;
+    const {resolveCart, username, role, cart, item, cart_count, cart_username, clearCart} = this.context;
     // require('../../Assets/js/custom.js')
     require("../../Assets/css/style.css");
     require("../../Assets/css/mob.css");
@@ -75,63 +75,69 @@ openCart = () => {
         onClose={this.openCart}
         visible={this.state.trigger}
       >
-        {/* <div className="row">
-        <div className="col-sm-12 col-lg-12">
-          
-        <h4 className="sofia badge badge-success">Primary Contact</h4>
-        </div>
-
-          <div className="col-sm-5 col-lg-5">
-        <p className="sofia">Name: {cart_username.name}</p>
-
-          </div>
-
-          
-          <div className="col-sm-6 col-lg-6">
-        <p className="sofia">Email: {cart_username.email}</p>
-
-          </div>
-          <div className="col-sm-6 col-lg-6">
-        <p className="sofia">Phone: {cart_username.phone}</p>
-
-          </div>
-<br/>
-          
-
-        </div> */}
-
-        {cart_username && cart_username.map((i, c) => {
+       
+<>
+        {cart_username != null && cart_username.length > 0 ? cart_username.map((i, c) => {
           return(
             <>
-            <div className="col-sm-12 col-lg-12">
+      <div className="row">
+      <div className="col-sm-8 col-lg-8">
+        <h4>{i.room_name} *</h4>
+        </div>
+        <div className="col-sm-8 col-lg-8">
+            <b className="sofia">{i.people_count} Persons &nbsp;   &nbsp;  &nbsp; {i.room_count} Rooms</b>
+            <br/>
+            <br/>
+        </div>
             <div className="col-sm-5 col-lg-5">
-                <p className="sofia">{c + 1}. {i.name}</p>
-
-            </div>
-
-            <div className="col-sm-4 col-lg-4">
-                <p className="sofia">{i.phone}</p>
+                <b className="sofia"><i className ="fa fa-user-o"/> &nbsp; {i.name}</b>
 
             </div>
 
             <div className="col-sm-3 col-lg-3">
-            {i.phone != null ? 
-                <p className="sofia badge badge-success">Primary Contact</p>
-:null
-            
-          }
+                <p className="sofia">{i.phone}</p>
 
+            </div>
+            <div className="col-sm-4 col-lg-4">
+          
+          <p className="sofia badge badge-success">Primary Contact</p>
+          {/* <br/> */}
+
+          </div>
+
+
+            <div className="col-sm-12 col-lg-12">
+            {cart_username && i.dd?.map(function(g) {
+                                      return (
+                                        <tr className="ext-tr">
+                                          
+                                          <p>
+                                            <i className ="fa fa-user-o"/> &nbsp; {g.name}
+                                          </p>
+                                        </tr>
+                                      )
+                                    })}
+         
             </div>
 
           
-          {/* <h4 className="sofia badge badge-success">Others</h4> */}
           </div>
           <br/>
           <hr/>
             </>
           )
-        })}
-        
+        }): null}
+
+{cart_username != null && cart_username.length > 0 ?
+      <div className="col-sm-12 col-lg-12">
+        <center>
+        <button className="btn btn-danger" onClick={clearCart}>Clear Booking Cart</button>
+
+        </center>
+
+
+            </div>: <center><p className="sofia">Booking Cart is Empty</p></center>}
+        </>
       </Drawer>
     
           {/* <Cart/> */}

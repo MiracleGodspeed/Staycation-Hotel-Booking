@@ -23,26 +23,33 @@ export class CartProvider extends Component{
           role: "admin",
           item:0,
           user_info: JSON.parse(localStorage.getItem("staycation_user")),
-          cart_count: init_count != null ? init_count.length : 0
+          cart_count: init_count != null ? init_count.length : 0,
+          cart_username:[]
 
         }
       }
 
       resolveCart = () => {
-        
+        let parsedObject
           setTimeout(() => {
             let retrievedData = localStorage.getItem("booking_cart");
         console.log(retrievedData, "ret")
 
-        let parsedObject = JSON.parse(retrievedData);
+        parsedObject = JSON.parse(retrievedData);
         console.log(parsedObject, "parsed")
         let modifiedForStorage = JSON.stringify(parsedObject);
         console.log(modifiedForStorage, "mod")
-        let tt = localStorage.setItem("booking_cart", modifiedForStorage);
-          this.setState({cart_username: parsedObject})
+        //let tt = localStorage.setItem("booking_cart", modifiedForStorage);
+        this.setState({cart_username: parsedObject})
           console.log(this.state.cart_username, "COmp Cart")
 
-          }, 2000)
+          }, 1000)
+
+      }
+
+      clearCart = () => {
+        localStorage.removeItem('booking_cart')
+        this.resolveCart();
       }
 
       componentDidMount(){
@@ -50,7 +57,7 @@ export class CartProvider extends Component{
       }
       render(){
           const {cart, username, role, item, cart_count, cart_username} = this.state; 
-          const {resolveCart} = this;
+          const {resolveCart, clearCart} = this;
           return(
             <CartContext.Provider value={{
                 username,
@@ -59,7 +66,8 @@ export class CartProvider extends Component{
                 item,
                 cart,
                 cart_count,
-                cart_username
+                cart_username,
+                clearCart
             }}>
                 {this.props.children }
             </CartContext.Provider>

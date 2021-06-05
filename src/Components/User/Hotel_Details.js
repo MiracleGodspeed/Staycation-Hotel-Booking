@@ -69,6 +69,9 @@ class HotelDetails extends Component {
             return ele.hotel_id != value; 
         });
     }
+    numberOfRooms = (value) => {
+        this.setState({room_ct:value})
+    }
 getRooms = () => {
     fetchData(Endpoint.Add_Room+"?="+this.state.hotel_Info.id, (data) => {
         console.log(data)
@@ -82,37 +85,9 @@ getRooms = () => {
         let new_arr = []
         let retrievedData = localStorage.getItem("booking_cart");
         console.log(retrievedData, "ret")
-        let parsedObject = JSON.parse(retrievedData);
+        let parsedObject = JSON.parse(retrievedData) != null ? JSON.parse(retrievedData) : [];
 
         console.log(parsedObject, "parsed")
-        var f1 = document.forms["Person1"]
-        var p_fullname = document.forms["Person1"]["fullname"].value;
-        var p_phone = document.forms["Person1"]["phone"].value;
-        var p_email = document.forms["Person1"]["email"].value;
-        let main_con = {
-            name:p_fullname,
-            email:p_email,
-            phone:p_phone,
-            hotel_id: parseInt(this.state.hotel_Info.id),
-            id: 1,
-            // dd:[]
-        }
-       
-        let gh;
-        localStorage.removeItem("booking_cart");
-        // if(retrievedData != null){
-        //         gh = parsedObject.find(x => x.hotel_id == parseInt(this.state.hotel_Info?.id))
-        //     if(gh != null){
-        //         console.log(gh, "gh")
-        //     }
-        // }
-        
-        //this.arrayRemove(retrievedData, gh.hotel_id)
-        
-
-       new_arr.push(main_con);
-        console.log(this.state.booking_arr, "Arr")
-        console.log(gh, "gh")
         
         let getPersons = parseInt(this.state.sel_num) + 1
         let formPrefix = "Person"
@@ -120,7 +95,6 @@ getRooms = () => {
         if(getPersons > 1){
             for(var i = 2; i < getPersons; i++){
                 var _form = formPrefix + [i]
-                // alert(_form)
                 var _formDetail = document.forms[_form]["fullname"].value;
                 let sub_con = {
                     name:_formDetail,
@@ -130,9 +104,31 @@ getRooms = () => {
                 new_arr.push(sub_con);
                 
             }
-            localStorage.setItem("booking_cart", JSON.stringify(new_arr))
-            this.context.resolveCart();
+            
         }
+        var f1 = document.forms["Person1"]
+        var p_fullname = document.forms["Person1"]["fullname"].value;
+        var p_phone = document.forms["Person1"]["phone"].value;
+        var p_email = document.forms["Person1"]["email"].value;
+        let main_con = {
+            name:p_fullname,
+            email:p_email,
+            phone:p_phone,
+            hotel_id: parseInt(this.state.hotel_Info.id),
+            room_name: this.state.name,
+            room_count:this.state.room_ct,
+            people_count:this.state.sel_num,
+            id: 1,
+            dd:new_arr
+        }
+       
+        //let gh;
+        parsedObject.push(main_con)
+        localStorage.removeItem("booking_cart");
+        localStorage.setItem("booking_cart", JSON.stringify(parsedObject))
+            this.context.resolveCart();
+   
+      
 
       
 
@@ -142,8 +138,8 @@ getRooms = () => {
             show_form: false,
             defaultRoomCount: 1,
         });
-        // this.resolveNumberOfPersons(1);
-        // openNotification();
+        this.resolveNumberOfPersons(1);
+        openNotification();
     };
 
     resolveNumberOfPersons = (value) => {
@@ -456,7 +452,7 @@ localStorage.setItem('myArray', JSON.stringify(array));
                                                 <label className="label-control col-sm-12 sofia"  style={{ fontSize: "12px", paddingLeft: "0px" }}>
                                                     * Number of Rooms
                                                 </label>
-                                                <Select defaultValue={this.state.defaultRoomCount} onChange={this.changeText} className="select-after sofia">
+                                                <Select defaultValue={"1"} onChange={this.numberOfRooms} className="select-after sofia">
                                                     <Option value="1">1</Option>
                                                     <Option value="2">2</Option>
                                                     <Option value="3">3</Option>
