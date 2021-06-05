@@ -11,6 +11,8 @@ import {Endpoint} from "../../Utils/endpoints"
 import {editData} from "../../Utils/crud"
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { ImportOutlined, LoadingOutlined } from '@ant-design/icons';
+import {CartContext} from "../../Context/CartContext"
+
 
 
 
@@ -63,15 +65,31 @@ class EditProfile extends Component {
                 parsedObject.data.gender = this.state.gender;
                 let modifiedForStorage = JSON.stringify(parsedObject);
                 localStorage.setItem("staycation_user", modifiedForStorage);
+
+             
                 this.setState({loading:false, succ_msg:true})
+                this.context.resolveCart();
             }
         })
       }
       updateChanges = () => {
-        this.setState({succ_msg:false})
-        window.location.reload();
+        this.setState({succ_msg:false, first_name:this.state.first_name})
+        // window.location.reload();
 
       }
+      l_setItem = (item) => {
+             return Promise.resolve().then(function () {
+                  localStorage.setItem("staycation_user", item);
+
+              });
+      }
+      l_getItem = () => {
+        return Promise.resolve().then(function () {
+          return localStorage.getItem("staycation_user");
+      });
+      }
+
+    
 
     componentDidMount(){ 
       console.log(this.state)
@@ -83,6 +101,7 @@ class EditProfile extends Component {
     render(){
  require('../../Assets/css/bootstrap.css');
 
+ const {resolveCart} = this.context;
       
         return(
             <div>
@@ -95,7 +114,7 @@ class EditProfile extends Component {
                         </SweetAlert> : null}
        <div className="db">
          {/*LEFT SECTION*/}
-        
+        {/* <button onClick={resolveCart}>Update</button> */}
          <SideMenu/>
          {/*CENTER SECTION*/}
          <div className="db-2">
@@ -194,5 +213,5 @@ class EditProfile extends Component {
         )
     }
 }
-
+EditProfile.contextType = CartContext;
 export default EditProfile;

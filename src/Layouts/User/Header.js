@@ -4,8 +4,12 @@ import logo from "../../Assets/images/logo.png";
 import logo2 from "../../Assets/images/logo-bg1.png";
 import logo3 from "../../Assets/images/logo-bg.png";
 import { Link } from "react-router-dom";
+import Cart from "../../Components/User/Cart"
 import $ from "jquery";
 import {isTokenValid, validateToken} from "../../Utils/auth"
+import { Drawer, Button } from 'antd';
+import {CartContext} from "../../Context/CartContext"
+
 
 import {
   Collapse,
@@ -32,7 +36,13 @@ class Header extends Component {
     localStorage.clear();
     window.location.href = "/";
   }
-
+openCart = () => {
+  if(!this.state.trigger){
+    this.setState({trigger:true})
+  }else{
+    this.setState({trigger:false})
+  }
+}
   componentDidMount() {
     init_jquery();
     $("#email-dd").on("click", function () {
@@ -41,6 +51,7 @@ class Header extends Component {
   }
 
   render() {
+    const {resolveCart, username, role, cart, item, cart_count, cart_username} = this.context;
     // require('../../Assets/js/custom.js')
     require("../../Assets/css/style.css");
     require("../../Assets/css/mob.css");
@@ -54,6 +65,76 @@ class Header extends Component {
         </div>
         {/* MOBILE MENU */}
         <section>
+       
+      <Drawer
+      width={640}
+      className="sofia"
+        title="Booking Cart"
+        placement="right"
+        closable={true}
+        onClose={this.openCart}
+        visible={this.state.trigger}
+      >
+        {/* <div className="row">
+        <div className="col-sm-12 col-lg-12">
+          
+        <h4 className="sofia badge badge-success">Primary Contact</h4>
+        </div>
+
+          <div className="col-sm-5 col-lg-5">
+        <p className="sofia">Name: {cart_username.name}</p>
+
+          </div>
+
+          
+          <div className="col-sm-6 col-lg-6">
+        <p className="sofia">Email: {cart_username.email}</p>
+
+          </div>
+          <div className="col-sm-6 col-lg-6">
+        <p className="sofia">Phone: {cart_username.phone}</p>
+
+          </div>
+<br/>
+          
+
+        </div> */}
+
+        {cart_username && cart_username.map((i, c) => {
+          return(
+            <>
+            <div className="col-sm-12 col-lg-12">
+            <div className="col-sm-5 col-lg-5">
+                <p className="sofia">{c + 1}. {i.name}</p>
+
+            </div>
+
+            <div className="col-sm-4 col-lg-4">
+                <p className="sofia">{i.phone}</p>
+
+            </div>
+
+            <div className="col-sm-3 col-lg-3">
+            {i.phone != null ? 
+                <p className="sofia badge badge-success">Primary Contact</p>
+:null
+            
+          }
+
+            </div>
+
+          
+          {/* <h4 className="sofia badge badge-success">Others</h4> */}
+          </div>
+          <br/>
+          <hr/>
+            </>
+          )
+        })}
+        
+      </Drawer>
+    
+          {/* <Cart/> */}
           <div className="ed-mob-menu">
             <div className="ed-mob-menu-con">
               <div className="ed-mm-left">
@@ -148,6 +229,10 @@ class Header extends Component {
                       <li>
                         <Link to={"/Booking"}>Book Now</Link>
                       </li>
+                   
+                      <Button type="primary" onClick={this.openCart}>
+        Booking Cart
+      </Button>
                     </ul>}
                   </div>
                 </div>
@@ -199,7 +284,7 @@ class Header extends Component {
                       {this.state.user_details?.data?.email} <i className="fa fa-angle-down"/>
                      </DropdownToggle>
 
-                     <DropdownMenu right style={{ padding: "9px" }}>
+                     <DropdownMenu right style={{ padding: "9px", minWidth:'250px'  }}>
                        <DropdownItem
                          className="col-md-12"
                          style={{
@@ -277,6 +362,9 @@ class Header extends Component {
                     </ul>
                   </div>
                 </div>
+                <Button type="primary" onClick={this.openCart}>
+        Booking Cart
+      </Button>
               </div>
             </div>
           </div>
@@ -361,5 +449,6 @@ class Header extends Component {
     );
   }
 }
+Header.contextType = CartContext;
 
 export default Header;

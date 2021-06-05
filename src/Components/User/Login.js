@@ -7,7 +7,7 @@ import { Alert, Spin } from 'antd';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { handleLogin } from "../../Utils/auth"
 import { Endpoint } from '../../Utils/endpoints'
-import { ImportOutlined, LoadingOutlined } from '@ant-design/icons';
+import { DatabaseFilled, ImportOutlined, LoadingOutlined } from '@ant-design/icons';
 
 
 
@@ -21,12 +21,9 @@ class Login extends Component {
     AuthenticateUser = (e) => {
         e.preventDefault();
         this.setState({ loading: true })
-        if (this.state.user_name == null || this.state.user_name.includes(" ")) {
+        if (this.state.user_name == null || this.state.user_name.includes(" ") || !this.state.user_name.includes("@")) {
             this.setState({ err_pop: true, loading: false })
             return false
-        }
-        else if (this.state.user_name == "admin") {
-            return window.location.href = "/Dashboard2"
         }
         else if (this.state.user_name != null && this.state.user_name.includes("@") && this.state.user_password != null) {
             let auth = {
@@ -39,7 +36,10 @@ class Login extends Component {
             }
             handleLogin(Endpoint.Login, payload, auth, data => {
                 console.log(data)
-                if (data.status === "success") {
+                if(data.status === "success" && data.data.email === "admin@staycation.com"){
+                    window.location.replace('/Dashboard2')
+                }
+                else if (data.status === "success") {
                     window.location.replace('/UserProfile')
                 } else {
                     this.setState({ invalid_login: true, loading: false })
@@ -55,6 +55,7 @@ class Login extends Component {
     }
 
     render() {
+        
         return (
             <div>
                 {this.state.err_pop ?

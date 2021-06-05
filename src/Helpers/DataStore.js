@@ -9,6 +9,45 @@ import room2 from "../Assets/images/rooms/02.jpg";
 import room3 from "../Assets/images/rooms/03.jpg";
 import room4 from "../Assets/images/rooms/04.jpg";
 
+
+
+export let Rooms = [
+    
+        {
+            Name:"ULTRA DELUX",
+            Amenities: "Television, WIFI, Hair Dryer, Gym",
+            Includes: "Parking Space, Breakfast",
+            Maximum_Persons: 3,
+            roomImage:room2,
+            PricePerNight: 50000,
+        },
+        {
+            Name:"EXECUTIVE",
+            Amenities: "Television, WIFI, Hair Dryer",
+            Includes: "Parking Space",
+            Maximum_Persons: 2,
+            roomImage:room3,
+            PricePerNight: 40000,
+        },
+        {
+            Name:"PREMIUM",
+            Amenities: "Television, WIFI",
+            Includes: "Car Wash",
+            Maximum_Persons: 2,
+            roomImage:room4,
+            PricePerNight: 30000,
+        },
+        {
+            Name:"REGULAR",
+            Amenities: "Television,",
+            Includes: "-",
+            Maximum_Persons: 1,
+            roomImage:room1,
+            PricePerNight: 15000,
+        }
+    
+]
+
  export let HoteList = [
     {
         Name: "Top Rank Luxury And Hotels",
@@ -28,6 +67,7 @@ import room4 from "../Assets/images/rooms/04.jpg";
                 Maximum_Persons: 3,
                 roomImage:room2,
                 PricePerNight: 50000,
+                id:1
             },
             {
                 Name:"EXECUTIVE",
@@ -36,6 +76,7 @@ import room4 from "../Assets/images/rooms/04.jpg";
                 Maximum_Persons: 2,
                 roomImage:room3,
                 PricePerNight: 40000,
+                id:2
             },
             {
                 Name:"PREMIUM",
@@ -44,6 +85,7 @@ import room4 from "../Assets/images/rooms/04.jpg";
                 Maximum_Persons: 2,
                 roomImage:room4,
                 PricePerNight: 30000,
+                id:3
             },
             {
                 Name:"REGULAR",
@@ -52,6 +94,7 @@ import room4 from "../Assets/images/rooms/04.jpg";
                 Maximum_Persons: 1,
                 roomImage:room1,
                 PricePerNight: 15000,
+                id:4
             }
         ]
     },

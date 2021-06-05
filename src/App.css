@@ -114,7 +114,9 @@ a {
 .s-l-u ul li a{
   font-family: 'Quicksand', sans-serif!important;
 }
-
+aside ul li a{
+  font-family: 'Quicksand', sans-serif!important;
+}
 table tr td{
   font-family: 'Quicksand', sans-serif!important;
 }

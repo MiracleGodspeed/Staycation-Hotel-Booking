@@ -5,6 +5,7 @@ import logo2 from "../../Assets/images/logo-bg1.png"
 import logo3 from "../../Assets/images/logo-bg.png"
 import {Link} from 'react-router-dom'
 import {DashTrigger} from "../../Assets/Sidebar/Dash"
+import {logout} from "../../Utils/auth"
 // import UserLayout from "../../Layouts/User/UserLayout"
 
 
@@ -42,7 +43,7 @@ class AdminHeader extends Component {
                 <img src="https://media.istockphoto.com/photos/north-african-black-young-woman-picture-id1060680104?k=6&m=1060680104&s=612x612&w=0&h=l5gSeqNZEwIeiwnE3koRr992nm5TLYVvKPiaNbLKRRo=" alt="" />
                 <div className="info">
                   <h3><a href="#">Godspeed Miracle</a></h3>
-                  <p>User</p>
+                  <p>Admin</p>
                 </div>
               </div>
               <div className="search">
@@ -52,14 +53,21 @@ class AdminHeader extends Component {
                 <li><i className="fa fa-home fa-fw" aria-hidden="true" /><a href="#">Home</a>
                   <ul className="side-nav-dropdown">
                     <li><Link to={"/"}>Staycation Home</Link></li>
-                    <li><a href="/Dashboard2">Dashboard</a></li>
+                    <li><Link to={"/Dashboard2"}>Dashboard</Link></li>
                     
                   </ul>
                 </li>
                 <li><i className="fa fa-support fa-fw" /><a href="#">Manage Hotel</a>
                   <ul className="side-nav-dropdown">
-                    <li><a href="/AddHotel">Add Host Hotel</a></li>
-                    <li><a href="#">Add Hotel Rooms</a></li>
+                    <li><Link to={"/AddHotel"}>Add Host Hotel</Link></li>
+                    <li><Link to={"/AddRooms"}>Add Hotel Rooms</Link></li>
+                    
+                  </ul>
+                </li>
+                <li><i className="fa fa-support fa-fw" /><a href="#">Image Uploads</a>
+                  <ul className="side-nav-dropdown">
+                    <li><Link to={"/AddHotelImages"}>Upload Hotel Images</Link></li>
+                    {/* <li><Link to={"/AddRooms"}>Upload Room Image</Link></li> */}
                     
                   </ul>
                 </li>
@@ -100,7 +108,7 @@ class AdminHeader extends Component {
                   <ul className="side-nav-dropdown">
                     <li><a href="#">Change Password</a></li>
                     <li><a href="#">Account Delete Request</a></li>
-                    <li><Link to={"/Login"}>Log Out</Link></li>
+                    <li><Link onClick={logout}>Log Out</Link></li>
                     
                   </ul>
                 </li>
@@ -125,7 +133,7 @@ class AdminHeader extends Component {
                           <li><a href="#"><i className="fa fa-envelope-o fw" /> My inbox</a></li>
                           <li><a href="#"><i className="fa fa-question-circle-o fw" /> Help</a></li>
                           <li role="separator" className="divider" />
-                          <li><a href="/Login"><i className="fa fa-sign-out" /> Log out</a></li>
+                          <li><a onClick={logout} href="#"><i className="fa fa-sign-out" /> Log out</a></li>
                         </ul>
                       </li>
                       {/* <li><a href="#"><i className="fa fa-comments" /><span>23</span></a></li> */}

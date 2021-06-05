@@ -33,49 +33,37 @@ import place4 from "../../Assets/images/place4.jpg"
 import Header from "../../Layouts/User/Header"
 import Footer from "../../Layouts/User/Footer"
 import {HoteList} from "../../Helpers/DataStore"
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
+import { Endpoint } from "../../Utils/endpoints";
+import { BASE_URL, fetchData, postData, postDataWithoutToken } from "../../Utils/crud";
 
-} from "reactstrap";
-// import '../../Assets/css/style.css'
-// import '../../Assets/css/mob.css'
-// import '../../Assets/css/materialize.css'
-// import '../../Assets/css/bootstrap.css'
-// import '../../Assets/css/animate.css'
 
-// import '../../Assets/css/font-awesome.min.css'
-// import '../../Assets/css/font-awesome.min.css'
 class Home extends Component{
     state={
 
     }
 
+  getAllHotels = () => {
+    fetchData(Endpoint.GetHotelsNoAuth, (data) => {
+      this.setState({hotel_list: data?.data})
+      console.log(data)
+    })
+  }
+
     componentDidMount(){
-        // init_jquery();
+      this.getAllHotels();
     }
     render(){
  require('../../Assets/css/bootstrap.css');
         return(
             <div>
       
-                {/* <h2>Home</h2>
-                <button className="btn btn-success">Click</button> */}
+               
       <div>
      
      
 	
 <Header/>
-{/* <Modal isOpen>
-       <ModalBody>
-         <h1>Modal</h1>
-       </ModalBody>
-     </Modal> */}
-        {/*END HEADER SECTION*/}
-        {/*HEADER SECTION*/}
+
         <section>
           <div className="tourz-search">
             <div className="container">
@@ -135,18 +123,18 @@ class Home extends Component{
               </div>
               <div>
                 {/* TOUR PLACE 1 */}
-                {HoteList && HoteList.map((i, h) => {
+                {this.state.hotel_list && this.state.hotel_list.map((i, h) => {
                   return(
                     <div className="col-md-4 col-sm-6 col-xs-12 b_packages wow slideInUp" data-wow-duration="0.5s">
                     {/* OFFER BRAND */}
                     <div className="band"> <img src={band} alt="" /> </div>
                     {/* IMAGE */}
-                    <div className="v_place_img"> <img src={i.DisplayImage} alt="Tour Booking" title="Tour Booking" /> </div>
+                    <div className="v_place_img"> <img src={h2} alt="Tour Booking" title="Tour Booking" /> </div>
                     {/* TOUR TITLE & ICONS */}
                     <div className="b_pack rows">
                       {/* TOUR TITLE */}
                       <div className="col-md-12 col-sm-12">
-                        <h4><Link to={{pathname:"/Hotel_Details", state:{data:i}}} id={i.id}>{i.Name}<span className="v_pl_name">{i.City}</span></Link></h4>
+                        <h4><Link to={{pathname:"/Hotel_Details", state:{data:i}}} id={i.id}>{i.hotel_name}<span className="v_pl_name">{i.city}</span></Link></h4>
                       </div>
                       {/* TOUR ICONS */}
                       {/* <div className="col-md-4 col-sm-4 pack_icon">

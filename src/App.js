@@ -14,13 +14,19 @@ import AdminDashboard from "./Components/Admin/Dashboard"
 import SideBar from "./Components/Admin/SideBar"
 import DashboardTwo from "./Components/Admin/DashBoardTwo"
 import AddHotel from "./Components/Admin/AddHotel"
+import AddRooms from "./Components/Admin/AddRooms"
+import HotelImages from "./Components/Admin/HotelImages"
 // import AdminDashboard from "./Layouts/Admin/AdminLayout"
 import UserLayout from "./Layouts/User/UserLayout"
 import DashboardSecond from "./Components/Admin/DashBoardTwo";
 import { browserHistory, Router, IndexRoute, hashHistory } from 'react-router'
+import { CartProvider } from "./Context/CartContext";
 
 
 export class App extends Component {
+  componentDidMount(){
+   
+}
   render() {
     return (
       <div>
@@ -31,7 +37,7 @@ export class App extends Component {
         />
       <link rel="preconnect" href="https://fonts.gstatic.com" />
       <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet"/>
-
+<CartProvider>
       <BrowserRouter>
         <Switch>
 
@@ -47,10 +53,13 @@ export class App extends Component {
             <Route path={"/Dashboard2"} component={DashboardSecond} />
             <Route path={"/UserProfile"} component={UserProfile} />
             <Route path={"/AddHotel"} component={AddHotel} />
+            <Route path={"/AddRooms"} component={AddRooms} />
             <Route path={"/Book"} component={UserCheckout} />
             <Route path={"/EditProfile"} component={EditProfile} />
+            <Route path={"/AddHotelImages"} component={HotelImages} />
         </Switch>
       </BrowserRouter>
+      </CartProvider>
 
 
       </div>

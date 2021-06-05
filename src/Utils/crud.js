@@ -36,16 +36,13 @@ export const handleLogin = (endpoint, data, auth, callback) => {
 }
 
 var myHeaders = () => {
-  let newAuth = "";
   const fetchHeader = new Headers();
   fetchHeader.append("Accept", "application/json")
   fetchHeader.append("Content-Type", "application/json")
-  // if(lStorage != null){
-  //   newAuth = 'Bearer '.concat(lStorage.data.token);
-  //   fetchHeader.append("Authorization", newAuth)
-  // }
+  if(lStorage != null){
+    fetchHeader.append("sv-token", lStorage.data.token)
+  }
   fetchHeader.append('Access-Control-Allow-Origin', '*');
-  fetchHeader.append('sv-token', lStorage.data.token);
 
   return fetchHeader
 }
@@ -61,35 +58,13 @@ var LoginHeaders = () => {
 }
 
 
-export const fetchDataWithoutToken = (endpoint, callback) => {
-  var requestOptions = {
-    method: "GET",
-    headers: LoginHeaders,
-    redirect: "follow",
-    credentials: "include",
-  }
-  
-  fetch(BASE_URL + endpoint, requestOptions)
-    .then(response => {
-      return response.json()
-    })
-    .then(jsondata => {
-      callback(jsondata)
-    })
-    .catch(error => console.log("An error Ocuured: " + error))
-}
-
-
-
 
 export const fetchData = (endpoint, callback) => {  
   var requestOptions = {
     method: "GET",
     headers: myHeaders(),
     redirect: "follow",
-    credentials: "include",
   }
-  
 
   fetch(BASE_URL + endpoint, requestOptions)
     .then(response => {
@@ -121,14 +96,40 @@ export const postData = (endpoint, data, callback) => {
 }
 
 
-export const editData = (endpoint, data, callback) => {
+export const postDataWithoutToken = (endpoint, data, callback) => {
   var requestOptions = {
-    method: "PUT",
+    crossDomain: true,
+    method: "POST",
+    // headers: myHeaders(),
     headers: {
       "sv-token": lStorage.data.token,
       'Content-Type': 'application/json',
-      "Authorization": `Bearer ${lStorage.data.token}`,
+      // "Authorization": `Bearer ${lStorage.data.token}`,
     },
+    redirect: "follow",
+    body: JSON.stringify(data),
+  }
+
+  fetch(BASE_URL + endpoint, requestOptions)
+    .then(response => {
+      return response.json()
+    })
+    .then(jsondata => {
+      callback(jsondata)
+    })
+    .catch(error => alert("An error Occured: " + error))
+}
+
+
+export const editData = (endpoint, data, callback) => {
+  var requestOptions = {
+    method: "PUT",
+    headers: myHeaders(),
+    // headers: {
+    //   "sv-token": lStorage.data.token,
+    //   'Content-Type': 'application/json',
+    //   "Authorization": `Bearer ${lStorage.data.token}`,
+    // },
     redirect: "follow",
     body: JSON.stringify(data),
   }

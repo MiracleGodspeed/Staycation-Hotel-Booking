@@ -100,7 +100,7 @@ class Register extends Component {
 
                                 <form className="col s12 regg-form">
                                     {this.state.succ_pop ? <Alert
-                                        message="Your email has been successfully registered. Enter a password to continue"
+                                        message="A verification code has been forwarded to your mail. Enter the verification code and create a password to continue"
                                         type="success"
                                         className="sofia"
                                         showIcon

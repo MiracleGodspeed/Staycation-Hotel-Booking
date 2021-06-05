@@ -11,6 +11,8 @@ import {DashTrigger} from "../../Assets/Sidebar/Dash"
 import {init_jquery} from "../../Assets/js/custom"
 import {DashboardOutlined, AppstoreOutlined, DollarOutlined} from '@ant-design/icons';
 import AdminHeader from "../../Layouts/Admin/Header"
+import {isTokenValid, validateToken} from "../../Utils/auth"
+
 // import "../../Assets/Sidebar/dash.css";
 
 
@@ -24,12 +26,8 @@ class DashboardSecond extends Component {
     reloadAction = () => {
     }
     componentDidMount(){
-     
-        //init_jquery();
-       
-          //DashTrigger();
-          
-      
+      window.scrollTo(0, 0);
+        validateToken();
     }
     render(){
 require("../../Assets/Sidebar/dash.css")
